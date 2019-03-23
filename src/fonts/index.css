@@ -1,0 +1,15 @@
+@font-face {
+    font-family: 'Bebas Neue';
+    font-style: normal;
+    font-weight: 500;
+    src: local('Bebas Neue Bold'),
+    url('BebasNeueBold.otf') format('otf');
+}
+
+@font-face {
+    font-family: 'Fjalla One';
+    font-style: normal;
+    font-weight: 300;
+    src: local('Fjalla One Regular'),
+    url('FjallaOneRegular.ttf') format('ttf');
+}

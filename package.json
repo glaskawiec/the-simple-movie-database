@@ -1,11 +1,14 @@
 {
-  "name": "the-better-movie-database",
+  "name": "theSimplerMovieDatabase",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "prop-types": "^15.7.2",
     "react": "^16.8.4",
     "react-dom": "^16.8.4",
-    "react-scripts": "2.1.8"
+    "react-scripts": "2.1.8",
+    "styled-components": "^4.2.0",
+    "styled-reset": "^2.0.2"
   },
   "scripts": {
     "start": "react-scripts start",
