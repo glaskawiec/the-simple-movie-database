@@ -12,7 +12,7 @@ const Header = props => (
     <Container>
       <Logo />
       <Menu>
-        {['movies', 'tv shows', 'actors'].map(item => (<Item>{item}</Item>))}
+        {['movies', 'tv shows', 'actors'].map(item => (<Item key={item}>{item}</Item>))}
       </Menu>
     </Container>
   </HeaderStyled>

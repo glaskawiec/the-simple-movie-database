@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-const LogoTextStyled = styled.div`
+const LogoText = styled.div`
    font-family: 'Bebas Neue',serif;
     font-style: normal;
     font-weight: 500;
@@ -12,4 +12,4 @@ const LogoTextStyled = styled.div`
     display: inline-block;
 `;
 
-export default LogoTextStyled;
+export default LogoText;
