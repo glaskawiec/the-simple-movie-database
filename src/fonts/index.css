@@ -13,3 +13,27 @@
     src: local('Fjalla One Regular'),
     url('FjallaOneRegular.ttf') format('ttf');
 }
+
+@font-face {
+    font-family: 'Karla';
+    font-style: normal;
+    font-weight: 300;
+    src: local('Karla Regular'),
+    url('KarlaRegular.ttf') format('ttf');
+}
+
+@font-face {
+    font-family: 'Karla';
+    font-style: normal;
+    font-weight: 500;
+    src: local('Karla Bold'),
+    url('KarlaBold.ttf') format('ttf');
+}
+
+@font-face {
+    font-family: 'Karla';
+    font-style: italic;
+    font-weight: 300;
+    src: local('Karla Italic'),
+    url('KarlaItalic.ttf') format('ttf');
+}
