@@ -5,7 +5,7 @@ import FooterLogo from './FooterLogo';
 
 const Footer = () => (
   <FooterWrapper>
-    <FooterLogo>tsmbd</FooterLogo>
+    <FooterLogo>tsmdb</FooterLogo>
     <FooterText>
       {'© 2019 by Gilbert Łaskawiec.'}
     </FooterText>
