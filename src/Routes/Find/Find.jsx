@@ -39,7 +39,6 @@ const Find = () => {
     setPage(pageNumber);
   };
 
-
   const onSearchInputChange = (event) => {
     clearTimeout(timeout);
     const newValue = event.target.value;

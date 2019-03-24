@@ -7,9 +7,7 @@ import Discover from './Routes/Discover/Discover';
 import Find from './Routes/Find/Find';
 
 const mobileWidth = 576;
-
 const initialIsMobile = window.innerWidth <= mobileWidth;
-export const isMobileContext = React.createContext(initialIsMobile);
 
 const App = () => {
   const [isMobile, setIsMobile] = useState(initialIsMobile);
@@ -34,4 +32,5 @@ const App = () => {
   );
 };
 
+export const isMobileContext = React.createContext(initialIsMobile);
 export default App;
