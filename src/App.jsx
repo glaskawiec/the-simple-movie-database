@@ -4,6 +4,7 @@ import { Reset } from 'styled-reset';
 import Layout from './Layout/Layout';
 import GlobalStyle from './GlobalStyle';
 import Movies from './Routes/Discover/Movies';
+import Find from "./Routes/Find/Find";
 
 const App = () => (
   <BrowserRouter>
@@ -11,6 +12,7 @@ const App = () => (
     <GlobalStyle />
     <Layout>
       <Route path="/" exact component={Movies} />
+      <Route path="/find" exact component={Find} />
     </Layout>
   </BrowserRouter>
 );

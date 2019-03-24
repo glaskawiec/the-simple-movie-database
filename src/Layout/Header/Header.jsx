@@ -1,26 +1,42 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+import ReactRouterPropTypes from 'react-router-prop-types';
+import { withRouter } from 'react-router-dom';
 import HeaderStyled from './HeaderStyled';
 import Logo from './Logo/Logo';
 import Container from '../Container';
 import Menu from './Menu/Menu';
 import Item from './Menu/Item';
 
-const Header = props => (
 
+const Header = ({ history }) => (
   <HeaderStyled>
     <Container>
       <Logo />
       <Menu>
-        {['discover', 'find'].map(item => (<Item key={item}>{item}</Item>))}
+        {[
+          {
+            label: 'discover',
+            path: '/',
+          },
+          {
+            label: 'find',
+            path: '/find',
+          },
+        ].map(item => (
+          <Item
+            onClick={() => { history.push({ pathname: item.path }); }}
+            key={item.label}
+          >
+            {item.label}
+          </Item>
+        ))}
       </Menu>
     </Container>
   </HeaderStyled>
-
 );
 
 Header.propTypes = {
-
+  history: ReactRouterPropTypes.history.isRequired,
 };
 
-export default Header;
+export default withRouter(Header);
