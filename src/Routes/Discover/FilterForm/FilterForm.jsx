@@ -2,47 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import FilterFormWrapper from './FilterFormWrapper';
 import Select from './Select/Select';
-
-const yearOptions = [
-  {
-    label: '2019',
-    value: '2019',
-  },
-  {
-    label: '2018',
-    value: '2018',
-  },
-  {
-    label: '2017',
-    value: '2017',
-  },
-];
-
-const sortOptions = [
-  {
-    label: 'Popularity Descending',
-    value: 'popularity.desc',
-  },
-  {
-    label: 'Popularity Ascending',
-    value: 'popularity.asc',
-  },
-];
-
-const genresOptions = [
-  {
-    label: 'All',
-    value: '',
-  },
-  {
-    label: 'Action',
-    value: '28',
-  },
-  {
-    label: 'Animation',
-    value: '16',
-  },
-];
+import yearOptions from './yearOptions';
+import sortOptions from './sortOptions';
+import genresOptions from './genresOptions';
 
 const FilterForm = ({
   onYearChange,

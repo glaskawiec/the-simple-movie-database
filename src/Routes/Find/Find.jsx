@@ -11,6 +11,7 @@ const fetchDelay = 500;
 const Find = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [results, setResults] = useState([]);
+  const [isError, setIsError] = useState(false);
   const [page, setPage] = useState(1);
   const [total, setTotal] = useState(0);
   const [searchText, setSearchText] = useState('');
@@ -23,11 +24,20 @@ const Find = () => {
     if (!isSearchBoxEmpty) {
       timeout = setTimeout(() => {
         (async () => {
+          setIsError(false);
           setIsLoading(true);
-          const response = await fetch(`${api}/search/movie?api_key=${apiKey}&language=en-US&query=${searchText}&page=${page}&include_adult=false`);
-          const parsedResponse = await response.json();
-          setResults(parsedResponse.results);
-          setTotal(parsedResponse.total_pages);
+          try {
+            const response = await fetch(`${api}/search/movie?api_key=${apiKey}&language=en-US&query=${searchText}&page=${page}&include_adult=false`);
+            const parsedResponse = await response.json();
+            if (!parsedResponse.results) {
+              setIsError(true);
+            }
+            setResults(parsedResponse.results);
+            setTotal(parsedResponse.total_pages);
+          } catch (error) {
+            setIsError(true);
+          }
+
           setIsLoading(false);
         })();
       }, fetchDelay);
@@ -69,6 +79,7 @@ const Find = () => {
         onPageChange={onPageChange}
         currentPage={page}
         isLoading={isLoading}
+        isError={isError}
         movies={results}
       />
     </>

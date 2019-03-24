@@ -8,6 +8,7 @@ const api = 'https://api.themoviedb.org/3';
 
 const Discover = () => {
   const [isLoading, setIsLoading] = useState(false);
+  const [isError, setIsError] = useState(false);
   const [results, setResults] = useState([]);
   const [page, setPage] = useState(1);
   const [total, setTotal] = useState(0);
@@ -17,11 +18,21 @@ const Discover = () => {
 
   useEffect(() => {
     (async () => {
+      setIsError(false);
       setIsLoading(true);
-      const response = await fetch(`${api}/discover/movie?api_key=${apiKey}&language=en-US&sort_by=${sort}&include_adult=false&include_video=false&page=${page}&with_genres=${genres}&year=${year}`);
-      const parsedResponse = await response.json();
-      setResults(parsedResponse.results);
-      setTotal(parsedResponse.total_pages);
+      try {
+        const response = await fetch(`${api}/discover/movie?api_key=${apiKey}&language=en-US&sort_by=${sort}&include_adult=false&include_video=false&page=${page}&with_genres=${genres}&primary_release_year=${year}`);
+        const parsedResponse = await response.json();
+        if (!parsedResponse.results) {
+          setIsError(true);
+        }
+        setResults(parsedResponse.results);
+        setTotal(parsedResponse.total_pages);
+      } catch (error) {
+        setIsError(true);
+      }
+
+
       setIsLoading(false);
     })();
   }, [page, year, genres, sort]);
@@ -64,6 +75,7 @@ const Discover = () => {
         onPageChange={onPageChange}
         currentPage={page}
         isLoading={isLoading}
+        isError={isError}
         movies={results}
       />
     </>
