@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import FilterFormWrapper from './FilterFormWrapper';
 import Select from './Select/Select';
+import TextInput from './TextInput/TextInput';
 
 
 const yearOptions = [
@@ -42,14 +43,14 @@ const genresOptions = [
 ];
 
 const FilterForm = ({
-  onYearChange, onSortChange, onGenresChange, year, sort, genres,
+  onYearChange, onSortChange, onGenresChange, onKeywordsChange, year, sort, genres, keywords,
 }) => (
   <FilterFormWrapper>
-    <Select
-      onChange={onYearChange}
-      label="Year"
-      options={yearOptions}
-      value={year}
+    <TextInput
+      onChange={onKeywordsChange}
+      placeholder="Filter by keywords..."
+      label="Keywords"
+      value={keywords}
     />
     <Select
       onChange={onSortChange}
@@ -57,6 +58,13 @@ const FilterForm = ({
       options={sortOptions}
       value={sort}
     />
+    <Select
+      onChange={onYearChange}
+      label="Year"
+      options={yearOptions}
+      value={year}
+    />
+
     <Select
       onChange={onGenresChange}
       label="Genres"
@@ -68,11 +76,13 @@ const FilterForm = ({
 
 FilterForm.propTypes = {
   onYearChange: PropTypes.func.isRequired,
+  onKeywordsChange: PropTypes.func.isRequired,
   onSortChange: PropTypes.func.isRequired,
   onGenresChange: PropTypes.func.isRequired,
   year: PropTypes.number.isRequired,
   sort: PropTypes.string.isRequired,
   genres: PropTypes.string.isRequired,
+  keywords: PropTypes.string.isRequired,
 };
 
 export default FilterForm;

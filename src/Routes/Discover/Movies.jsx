@@ -19,6 +19,7 @@ const Movies = (props) => {
   const [sort, setSort] = useState('popularity.desc');
   const [genres, setGenres] = useState('all');
   const [year, setYear] = useState(2019);
+  const [query, setQuery] = useState('');
 
 
   useEffect(() => {
@@ -32,6 +33,19 @@ const Movies = (props) => {
       setIsLoading(false);
     })();
   }, [page, year, genres, sort]);
+
+  useEffect(() => {
+    if (query.length > 3) {
+      (async () => {
+        setIsLoading(true);
+        const response = await fetch(`${api}/search/movie?api_key=${apiKey}&language=en-US&query=${query}&page=1&include_adult=false`);
+        const parsedResponse = await response.json();
+        setResults(parsedResponse.results);
+        setTotal(parsedResponse.total_pages);
+        setIsLoading(false);
+      })();
+    }
+  }, [query]);
 
   const formatDescription = (text) => {
     // @TODO: Correct format
@@ -49,9 +63,11 @@ const Movies = (props) => {
       </Heading>
       <FilterForm
         onGenresChange={event => setGenres(event.target.value)}
+        onKeywordsChange={event => setQuery(event.target.value)}
         onSortChange={event => setSort(event.target.value)}
         onYearChange={event => setYear(event.target.value)}
         sort={sort}
+        keywords={query}
         genres={genres}
         year={year}
       />

@@ -3,7 +3,7 @@ import { BrowserRouter, Route } from 'react-router-dom';
 import { Reset } from 'styled-reset';
 import Layout from './Layout/Layout';
 import GlobalStyle from './GlobalStyle';
-import Movies from './Routes/Movies/Movies';
+import Movies from './Routes/Discover/Movies';
 
 const App = () => (
   <BrowserRouter>
