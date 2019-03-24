@@ -6,15 +6,15 @@ import Select from './Select/Select';
 const yearOptions = [
   {
     label: '2019',
-    value: 2019,
+    value: '2019',
   },
   {
     label: '2018',
-    value: 2018,
+    value: '2018',
   },
   {
     label: '2017',
-    value: 2017,
+    value: '2017',
   },
 ];
 
@@ -32,11 +32,15 @@ const sortOptions = [
 const genresOptions = [
   {
     label: 'All',
-    value: 'all',
+    value: '',
   },
   {
     label: 'Action',
-    value: 'action',
+    value: '28',
+  },
+  {
+    label: 'Animation',
+    value: '16',
   },
 ];
 

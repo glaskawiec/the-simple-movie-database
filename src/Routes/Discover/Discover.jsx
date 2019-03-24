@@ -12,13 +12,13 @@ const Discover = () => {
   const [page, setPage] = useState(1);
   const [total, setTotal] = useState(0);
   const [sort, setSort] = useState('popularity.desc');
-  const [genres, setGenres] = useState('all');
-  const [year, setYear] = useState(2019);
+  const [genres, setGenres] = useState('');
+  const [year, setYear] = useState('');
 
   useEffect(() => {
     (async () => {
       setIsLoading(true);
-      const response = await fetch(`${api}/discover/movie?api_key=${apiKey}&language=en-US&sort_by=${sort}&include_adult=false&include_video=false&page=${page}`);
+      const response = await fetch(`${api}/discover/movie?api_key=${apiKey}&language=en-US&sort_by=${sort}&include_adult=false&include_video=false&page=${page}&with_genres=${genres}&year=${year}`);
       const parsedResponse = await response.json();
       setResults(parsedResponse.results);
       setTotal(parsedResponse.total_pages);
@@ -31,15 +31,30 @@ const Discover = () => {
     setPage(pageNumber);
   };
 
+  const onSortChange = (value) => {
+    setIsLoading(true);
+    setSort(value);
+  };
+
+  const onYearChange = (value) => {
+    setIsLoading(true);
+    setYear(value);
+  };
+
+  const onGenresChange = (value) => {
+    setIsLoading(true);
+    setGenres(value);
+  };
+
   return (
     <>
       <Heading>
         {'Discover movies'}
       </Heading>
       <FilterForm
-        onGenresChange={event => setGenres(event.target.value)}
-        onSortChange={event => setSort(event.target.value)}
-        onYearChange={event => setYear(event.target.value)}
+        onGenresChange={event => onGenresChange(event.target.value)}
+        onSortChange={event => onSortChange(event.target.value)}
+        onYearChange={event => onYearChange(event.target.value)}
         sort={sort}
         genres={genres}
         year={year}
