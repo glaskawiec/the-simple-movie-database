@@ -1,13 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import Heading from '../../Common/Heading';
-import Movie from './Movie/Movie';
-import MoviesWrapper from './MoviesWrapper';
 import FilterForm from './Movie/FilterForm/FilterForm';
 import Pagination from './Pagination/Pagination';
 import apiKey from '../../apiKey';
-import LoadingBars from './Movie/LoadingBars/LoadingBars';
-import LoadingScreen from './Movie/LoadingBars/LoadingScreen';
 import MoviesList from '../../Common/MoviesList';
 
 const api = 'https://api.themoviedb.org/3';
@@ -56,18 +52,12 @@ const Discover = (props) => {
         genres={genres}
         year={year}
       />
-      <Pagination
-        total={total}
+      <MoviesList
+        totalPages={total}
         onPageChange={onPageChange}
-        current={page}
-      />
-
-      <MoviesList isLoading={isLoading} movies={results} />
-
-      <Pagination
-        total={total}
-        onPageChange={onPageChange}
-        current={page}
+        currentPage={page}
+        isLoading={isLoading}
+        movies={results}
       />
     </>
   );

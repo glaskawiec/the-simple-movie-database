@@ -3,9 +3,8 @@ import PropTypes from 'prop-types';
 import Heading from '../../Common/Heading';
 import TextInput from './TextInput/TextInput';
 import apiKey from '../../apiKey';
-import Pagination from '../Discover/Pagination/Pagination';
-import MoviesList from '../../Common/MoviesList';
 import SearchInputForm from './SearchInputForm';
+import MoviesList from "../../Common/MoviesList";
 
 const api = 'https://api.themoviedb.org/3';
 const fetchDelay = 500;
@@ -68,19 +67,12 @@ const Find = () => {
           value={searchText}
         />
       </SearchInputForm>
-      <Pagination
-        total={total}
-        onPageChange={onPageChange}
-        current={page}
-      />
       <MoviesList
+        totalPages={total}
+        onPageChange={onPageChange}
+        currentPage={page}
         isLoading={isLoading}
         movies={results}
-      />
-      <Pagination
-        total={total}
-        onPageChange={onPageChange}
-        current={page}
       />
     </>
   );
