@@ -4,14 +4,13 @@ import Heading from '../../Common/Heading';
 import TextInput from './TextInput/TextInput';
 import apiKey from '../../apiKey';
 import Pagination from '../Discover/Pagination/Pagination';
-import LoadingScreen from '../Discover/Movie/LoadingBars/LoadingScreen';
-import LoadingBars from '../Discover/Movie/LoadingBars/LoadingBars';
 import MoviesList from '../../Common/MoviesList';
 import SearchInputForm from './SearchInputForm';
 
 const api = 'https://api.themoviedb.org/3';
 const fetchDelay = 500;
-const Find = (props) => {
+
+const Find = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [results, setResults] = useState([]);
   const [page, setPage] = useState(1);
@@ -28,7 +27,7 @@ const Find = (props) => {
         console.log('Fetch fired');
         (async () => {
           setIsLoading(true);
-          const response = await fetch(`${api}/search/movie?api_key=${apiKey}&language=en-US&query=${searchText}&page=1&include_adult=false`);
+          const response = await fetch(`${api}/search/movie?api_key=${apiKey}&language=en-US&query=${searchText}&page=${page}&include_adult=false`);
           const parsedResponse = await response.json();
           setResults(parsedResponse.results);
           setTotal(parsedResponse.total_pages);
@@ -38,8 +37,11 @@ const Find = (props) => {
     }
   }, [searchText, page]);
 
+  const onPageChange = (pageNumber) => {
+    setIsLoading(true);
+    setPage(pageNumber);
+  };
 
-  // const isMoviesListEmpty = results.length === 0;
 
   const onSearchInputChange = (event) => {
     clearTimeout(timeout);
@@ -49,6 +51,7 @@ const Find = (props) => {
     } else {
       setIsLoading(false);
     }
+    setPage(1);
     setSearchText(newValue);
   };
 
@@ -67,7 +70,7 @@ const Find = (props) => {
       </SearchInputForm>
       <Pagination
         total={total}
-        setPage={setPage}
+        onPageChange={onPageChange}
         current={page}
       />
       <MoviesList
@@ -76,7 +79,7 @@ const Find = (props) => {
       />
       <Pagination
         total={total}
-        setPage={setPage}
+        onPageChange={onPageChange}
         current={page}
       />
     </>

@@ -35,8 +35,12 @@ const Discover = (props) => {
     })();
   }, [page, year, genres, sort]);
 
+  const onPageChange = (pageNumber) => {
+    setIsLoading(true);
+    setPage(pageNumber);
+  };
 
-  console.log('render fired');
+
   return (
     <>
       <Heading>
@@ -54,7 +58,7 @@ const Discover = (props) => {
       />
       <Pagination
         total={total}
-        setPage={setPage}
+        onPageChange={onPageChange}
         current={page}
       />
 
@@ -62,7 +66,7 @@ const Discover = (props) => {
 
       <Pagination
         total={total}
-        setPage={setPage}
+        onPageChange={onPageChange}
         current={page}
       />
     </>

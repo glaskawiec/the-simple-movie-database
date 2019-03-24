@@ -5,7 +5,7 @@ import PaginationWrapper from './PaginationWrapper';
 import PageNumber from './PageNumber';
 import Button from './Button';
 
-const Pagination = ({ total, current, setPage }) => {
+const Pagination = ({ total, current, onPageChange }) => {
   const calculatePages = () => {
     const pagesToShow = [1, total];
 
@@ -36,17 +36,17 @@ const Pagination = ({ total, current, setPage }) => {
   return (
     <PaginationWrapper>
       <PaginationStyled>
-        {current > 1 ? <Button onClick={() => setPage(current - 1)}>← Previous</Button> : null}
+        {current > 1 ? <Button onClick={() => onPageChange(current - 1)}>← Previous</Button> : null}
         {pagesToShow.map(page => (
           <PageNumber
             key={page}
-            onClick={() => setPage(page)}
+            onClick={() => onPageChange(page)}
             isActive={page === current}
           >
             {page}
           </PageNumber>
         ))}
-        {current < total ? <Button onClick={() => setPage(current + 1)}>Next →</Button> : null}
+        {current < total ? <Button onClick={() => onPageChange(current + 1)}>Next →</Button> : null}
 
       </PaginationStyled>
     </PaginationWrapper>
@@ -56,7 +56,7 @@ const Pagination = ({ total, current, setPage }) => {
 Pagination.propTypes = {
   total: PropTypes.number.isRequired,
   current: PropTypes.number.isRequired,
-  setPage: PropTypes.func.isRequired,
+  onPageChange: PropTypes.func.isRequired,
 };
 
 export default Pagination;
