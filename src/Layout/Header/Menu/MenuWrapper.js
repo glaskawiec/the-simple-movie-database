@@ -1,8 +1,8 @@
 import styled from 'styled-components';
 
-const Menu = styled.ul`
+const MenuWrapper = styled.ul`
   display: inline;
   margin-left: 2em;
 `;
 
-export default Menu;
+export default MenuWrapper;

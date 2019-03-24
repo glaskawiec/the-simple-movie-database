@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import MoviesListWrapper from './MoviesListWrapper';
 import Pagination from './Pagination/Pagination';
@@ -16,11 +16,10 @@ const formatDescription = (text) => {
 const mobileSrc = 'w1000_and_h563_face';
 const desktopSrc = 'w185_and_h278_bestv2';
 
-
 const MoviesList = ({
   movies, isLoading, totalPages, currentPage, onPageChange,
 }) => {
-    const isMobile = window.innerWidth <= 768;
+  const isMobile = window.innerWidth <= 768;
   return (
     <>
       <Pagination
@@ -50,7 +49,6 @@ const MoviesList = ({
     </>
   );
 };
-
 
 MoviesList.propTypes = {
   movies: PropTypes.arrayOf(PropTypes.object).isRequired,

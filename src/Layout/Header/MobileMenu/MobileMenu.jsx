@@ -4,10 +4,10 @@ import ReactRouterPropTypes from 'react-router-prop-types';
 import { withRouter } from 'react-router-dom';
 import Overlay from './Overlay';
 import Navigation from './Navigation';
-import Item from './Item';
 import MenuStyled from './MenuStyled';
+import Item from './Item';
 
-const Menu = ({ isMenuOpen, setIsMenuOpen, history }) => {
+const MobileMenu = ({ isMenuOpen, setIsMenuOpen, history }) => {
   const changeRoute = (url) => {
     history.push(url);
     setIsMenuOpen(false);
@@ -44,10 +44,10 @@ const Menu = ({ isMenuOpen, setIsMenuOpen, history }) => {
   );
 };
 
-Menu.propTypes = {
+MobileMenu.propTypes = {
   isMenuOpen: PropTypes.bool.isRequired,
   setIsMenuOpen: PropTypes.func.isRequired,
   history: ReactRouterPropTypes.history.isRequired,
 };
 
-export default withRouter(Menu);
+export default withRouter(MobileMenu);

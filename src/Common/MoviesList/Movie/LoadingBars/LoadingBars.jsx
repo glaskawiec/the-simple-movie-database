@@ -1,16 +1,12 @@
 import React from 'react';
 import LoadingBarsWrapper from './LoadingBarsWrapper';
 
-const LoadingBars = props => (
+const LoadingBars = () => (
   <LoadingBarsWrapper>
     <div />
     <div />
     <div />
   </LoadingBarsWrapper>
 );
-
-LoadingBars.propTypes = {
-
-};
 
 export default LoadingBars;
