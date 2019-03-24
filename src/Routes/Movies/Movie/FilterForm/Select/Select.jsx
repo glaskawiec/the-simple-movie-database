@@ -4,17 +4,23 @@ import SelectStyled from './SelectStyled';
 import Label from './Label';
 import SelectWrapper from './SelectWrapper';
 
-const Select = ({ label, options }) => (
+const Select = ({
+  label, options, onChange, value,
+}) => (
   <SelectWrapper>
     <Label>{label}</Label>
-    <SelectStyled>
-      {options.map(option => (<option key={option}>{option}</option>))}
+    <SelectStyled value={value} onChange={onChange}>
+      {options.map(({ value: optionValue, label: optionLabel }) => (
+        <option value={optionValue} key={optionLabel}>{optionLabel}</option>
+      ))}
     </SelectStyled>
   </SelectWrapper>
 );
 
 Select.propTypes = {
+  onChange: PropTypes.func.isRequired,
   label: PropTypes.string.isRequired,
+  value: PropTypes.string.isRequired,
   options: PropTypes.arrayOf(PropTypes.string).isRequired,
 };
 

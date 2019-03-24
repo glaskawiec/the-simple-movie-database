@@ -6,6 +6,8 @@ import MoviesWrapper from './MoviesWrapper';
 import FilterForm from './Movie/FilterForm/FilterForm';
 import Pagination from './Pagination/Pagination';
 import apiKey from '../../apiKey';
+import LoadingBars from './Movie/LoadingBars/LoadingBars';
+import LoadingScreen from './Movie/LoadingBars/LoadingScreen';
 
 const api = 'https://api.themoviedb.org/3';
 
@@ -14,21 +16,22 @@ const Movies = (props) => {
   const [results, setResults] = useState([]);
   const [page, setPage] = useState(1);
   const [total, setTotal] = useState(0);
-  // const [sort, setSort] = useState(1);
-  // const [genres, setGenres] = useState('All');
+  const [sort, setSort] = useState('popularity.desc');
+  const [genres, setGenres] = useState('all');
+  const [year, setYear] = useState(2019);
 
 
   useEffect(() => {
     console.log('useEffect called');
     (async () => {
       setIsLoading(true);
-      const response = await fetch(`${api}/discover/movie?api_key=${apiKey}&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=${page}`);
+      const response = await fetch(`${api}/discover/movie?api_key=${apiKey}&language=en-US&sort_by=${sort}&include_adult=false&include_video=false&page=${page}`);
       const parsedResponse = await response.json();
       setResults(parsedResponse.results);
       setTotal(parsedResponse.total_pages);
       setIsLoading(false);
     })();
-  }, [page]);
+  }, [page, year, genres, sort]);
 
   const formatDescription = (text) => {
     // @TODO: Correct format
@@ -44,14 +47,21 @@ const Movies = (props) => {
       <Heading>
         {'Discover movies'}
       </Heading>
-      <FilterForm />
+      <FilterForm
+        onGenresChange={event => setGenres(event.target.value)}
+        onSortChange={event => setSort(event.target.value)}
+        onYearChange={event => setYear(event.target.value)}
+        sort={sort}
+        genres={genres}
+        year={year}
+      />
       <Pagination
         total={total}
         setPage={setPage}
         current={page}
       />
       {isLoading
-        ? <div>Loading ...</div>
+        ? <LoadingScreen><LoadingBars /></LoadingScreen>
         : (
           <MoviesWrapper>
             {results.map(movie => (
