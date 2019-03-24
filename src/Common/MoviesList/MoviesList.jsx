@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import MoviesWrapper from '../Routes/Discover/MoviesWrapper';
-import Pagination from '../Routes/Discover/Pagination/Pagination';
-import LoadingBars from '../Routes/Discover/Movie/LoadingBars/LoadingBars';
-import Movie from '../Routes/Discover/Movie/Movie';
+import MoviesListWrapper from './MoviesListWrapper';
+import Pagination from './Pagination/Pagination';
+import LoadingBars from './Movie/LoadingBars/LoadingBars';
+import Movie from './Movie/Movie';
 
 const formatDescription = (text) => {
   // @TODO: Correct format
@@ -22,7 +22,7 @@ const MoviesList = ({
       onPageChange={onPageChange}
       current={currentPage}
     />
-    <MoviesWrapper isLoading={isLoading}>
+    <MoviesListWrapper isLoading={isLoading}>
 
       {isLoading
         ? <LoadingBars />
@@ -35,7 +35,7 @@ const MoviesList = ({
             title={movie.title}
           />
         ))}
-    </MoviesWrapper>
+    </MoviesListWrapper>
     <Pagination
       total={totalPages}
       onPageChange={onPageChange}

@@ -10,6 +10,7 @@ const LogoText = styled.div`
     border-bottom: 0;
     padding: .15em;
     display: inline-block;
+    text-transform: uppercase;
 `;
 
 export default LogoText;

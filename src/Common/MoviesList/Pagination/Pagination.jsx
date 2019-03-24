@@ -14,7 +14,7 @@ const Pagination = ({ total, current, onPageChange }) => {
     }
 
     for (let i = 1; i < 4; i += 1) {
-      if (current + i <= total) {
+      if (current + i < total) {
         pagesToShow.push(current + i);
       }
 

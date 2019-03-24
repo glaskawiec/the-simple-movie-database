@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import PropTypes from 'prop-types';
 import Heading from '../../Common/Heading';
 import TextInput from './TextInput/TextInput';
 import apiKey from '../../apiKey';
 import SearchInputForm from './SearchInputForm';
-import MoviesList from "../../Common/MoviesList";
+import MoviesList from '../../Common/MoviesList/MoviesList';
 
 const api = 'https://api.themoviedb.org/3';
 const fetchDelay = 500;
@@ -23,7 +22,6 @@ const Find = () => {
   useEffect(() => {
     if (!isSearchBoxEmpty) {
       timeout = setTimeout(() => {
-        console.log('Fetch fired');
         (async () => {
           setIsLoading(true);
           const response = await fetch(`${api}/search/movie?api_key=${apiKey}&language=en-US&query=${searchText}&page=${page}&include_adult=false`);
@@ -76,10 +74,6 @@ const Find = () => {
       />
     </>
   );
-};
-
-Find.propTypes = {
-
 };
 
 export default Find;

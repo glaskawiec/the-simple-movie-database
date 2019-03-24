@@ -1,14 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import PropTypes from 'prop-types';
 import Heading from '../../Common/Heading';
-import FilterForm from './Movie/FilterForm/FilterForm';
-import Pagination from './Pagination/Pagination';
+import FilterForm from './FilterForm/FilterForm';
 import apiKey from '../../apiKey';
-import MoviesList from '../../Common/MoviesList';
+import MoviesList from '../../Common/MoviesList/MoviesList';
 
 const api = 'https://api.themoviedb.org/3';
 
-const Discover = (props) => {
+const Discover = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [results, setResults] = useState([]);
   const [page, setPage] = useState(1);
@@ -20,7 +18,6 @@ const Discover = (props) => {
 
 
   useEffect(() => {
-    console.log('useEffect called');
     (async () => {
       setIsLoading(true);
       const response = await fetch(`${api}/discover/movie?api_key=${apiKey}&language=en-US&sort_by=${sort}&include_adult=false&include_video=false&page=${page}`);
@@ -61,10 +58,6 @@ const Discover = (props) => {
       />
     </>
   );
-};
-
-Discover.propTypes = {
-
 };
 
 export default Discover;
