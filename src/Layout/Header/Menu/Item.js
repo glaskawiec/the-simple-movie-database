@@ -19,7 +19,7 @@ margin-right: 0;
     
     
     &:hover{
-    color: #F2355B;
+    color: ${props => props.theme.primary};
     }
     
     &:last-child {

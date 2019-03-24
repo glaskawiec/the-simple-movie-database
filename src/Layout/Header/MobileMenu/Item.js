@@ -18,7 +18,7 @@ const Item = styled.li`
  
   
     &:hover{
-    color: #F2355B;
+    color: ${props => props.theme.primary};
     }
 `;
 

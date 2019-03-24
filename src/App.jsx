@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { BrowserRouter, Route } from 'react-router-dom';
+import { ThemeProvider } from 'styled-components';
 import { Reset } from 'styled-reset';
 import Layout from './Layout/Layout';
 import GlobalStyle from './GlobalStyle';
@@ -8,6 +9,11 @@ import Find from './Routes/Find/Find';
 
 const mobileWidth = 576;
 const initialIsMobile = window.innerWidth <= mobileWidth;
+
+const theme = {
+  primary: '#F2355B',
+  secondary: '#161616',
+};
 
 const App = () => {
   const [isMobile, setIsMobile] = useState(initialIsMobile);
@@ -20,14 +26,16 @@ const App = () => {
   });
   return (
     <BrowserRouter>
-      <isMobileContext.Provider value={isMobile}>
-        <Reset />
-        <GlobalStyle />
-        <Layout>
-          <Route path="/" exact component={Discover} />
-          <Route path="/find" exact component={Find} />
-        </Layout>
-      </isMobileContext.Provider>
+      <ThemeProvider theme={theme}>
+        <isMobileContext.Provider value={isMobile}>
+          <Reset />
+          <GlobalStyle />
+          <Layout>
+            <Route path="/" exact component={Discover} />
+            <Route path="/find" exact component={Find} />
+          </Layout>
+        </isMobileContext.Provider>
+      </ThemeProvider>
     </BrowserRouter>
   );
 };

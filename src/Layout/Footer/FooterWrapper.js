@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 const FooterWrapper = styled.footer`
-  background-color: #161616;
+  background-color: ${props => props.theme.secondary};
   width: 100%;
   height: 4em;
   display: flex;

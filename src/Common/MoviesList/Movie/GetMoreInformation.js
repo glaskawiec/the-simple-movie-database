@@ -8,7 +8,7 @@ const GetMoreInformation = styled.span`
   cursor: pointer;
     
   &:hover{
-    color:  #F2355B
+    color:  ${props => props.theme.primary};
   }
 `;
 

@@ -6,7 +6,7 @@ const LogoText = styled.div`
     font-weight: 500;
     color: #FFFFFF;
     font-size: 3em;
-    border: solid .1em #F2355B;
+    border: solid .1em ${props => props.theme.primary};
     border-bottom: 0;
     padding: .15em;
     display: inline-block;
