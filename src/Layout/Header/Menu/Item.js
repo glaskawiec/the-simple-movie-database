@@ -13,6 +13,10 @@ const Item = styled.li`
     margin-right: 1em;
     vertical-align: super;
     
+    @media (max-width: 576px) {
+margin-right: 0;
+  }
+    
     
     &:hover{
     color: #F2355B;

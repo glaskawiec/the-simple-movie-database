@@ -11,6 +11,10 @@ const LogoText = styled.div`
     padding: .15em;
     display: inline-block;
     text-transform: uppercase;
+    
+       @media (max-width: 576px) {
+       font-size: 2em;
+      }
 `;
 
 export default LogoText;

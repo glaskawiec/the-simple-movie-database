@@ -8,6 +8,7 @@ display: inline-block;
   font-size: 1em;
   padding-left: 0.5em;
   border: 1px solid rgb(169, 169, 169);
+  width: 100%;
   
 `;
 

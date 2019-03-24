@@ -7,6 +7,14 @@ const MoviesListWrapper = styled.div`
   min-height: calc(100vh - 6em - 4em - 4em - 6em);      
   justify-content: ${props => (props.isLoading ? 'center' : 'space-between')};
   align-items: center;
+  
+  @media (max-width: 768px) {
+      justify-content: center;
+  }
+  
+  @media (max-width: 576px) {
+   min-height: calc(100vh - 6em - 4em - 4em - 4em);   
+  }
 `;
 
 export default MoviesListWrapper;

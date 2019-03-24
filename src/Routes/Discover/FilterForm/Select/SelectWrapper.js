@@ -3,10 +3,17 @@ import styled from 'styled-components';
 const SelectWrapper = styled.div`
 display: inline-block;
 margin-right: 1.5em;
+ margin-top: 1em;
 
-&:last-child {
-margin-right: 0;
-}
+  @media (max-width: 576px) {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    width:80%;
+    margin-left: auto;
+    margin-right: auto;
+  }
 
 `;
 

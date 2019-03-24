@@ -7,6 +7,16 @@ const PaginationWrapper = styled.div`
   display: flex;
   justify-content: center;
   align-content: center;
+  
+    @media (max-width: 576px) {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    width:80%;
+    margin-left: auto;
+    margin-right: auto;
+  }
 `;
 
 export default PaginationWrapper;

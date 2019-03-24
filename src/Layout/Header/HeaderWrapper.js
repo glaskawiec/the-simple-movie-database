@@ -1,7 +1,13 @@
 import styled from 'styled-components';
 
-const Container = styled.div`
-  width: 100%;
+const HeaderWrapper = styled.div`
+@media (max-width: 576px) {
+   display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+    width: 100%;
   margin-right: auto;
   margin-left: auto;
   
@@ -23,4 +29,4 @@ const Container = styled.div`
   }
 `;
 
-export default Container;
+export default HeaderWrapper;
