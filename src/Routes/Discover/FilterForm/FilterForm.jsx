@@ -79,7 +79,7 @@ FilterForm.propTypes = {
   onYearChange: PropTypes.func.isRequired,
   onSortChange: PropTypes.func.isRequired,
   onGenresChange: PropTypes.func.isRequired,
-  year: PropTypes.number.isRequired,
+  year: PropTypes.string.isRequired,
   sort: PropTypes.string.isRequired,
   genres: PropTypes.string.isRequired,
 };

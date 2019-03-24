@@ -28,7 +28,7 @@ const MoviesList = ({
         ? <LoadingBars />
         : movies.map(movie => (
           <Movie
-            key={movie.title}
+            key={movie.id}
             posterSrc={`https://image.tmdb.org/t/p/w185_and_h278_bestv2${movie.poster_path}`}
             description={formatDescription(movie.overview)}
             metaInformation={movie.release_date}
