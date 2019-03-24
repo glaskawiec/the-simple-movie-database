@@ -1,19 +1,13 @@
 import styled from 'styled-components';
 
 const PaginationStyled = styled.div`
-display: inline-block;
+  display: inline-block;
 
-& span {
-  color: black;
-  float: left;
-  padding: 8px 16px;
-  text-decoration: none;
-  cursor: pointer;
-}
-
-
-
-
+  & span {
+    float: left;
+    padding: 8px 16px;
+    cursor: pointer;
+  }
 `;
 
 export default PaginationStyled;

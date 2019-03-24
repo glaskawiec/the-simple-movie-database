@@ -41,7 +41,12 @@ const genresOptions = [
 ];
 
 const FilterForm = ({
-  onYearChange, onSortChange, onGenresChange, year, sort, genres,
+  onYearChange,
+  onSortChange,
+  onGenresChange,
+  year,
+  sort,
+  genres,
 }) => (
   <FilterFormWrapper>
     <Select

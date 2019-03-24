@@ -27,7 +27,6 @@ const Pagination = ({ total, current, onPageChange }) => {
   };
 
   const pagesToShow = calculatePages();
-  console.log(pagesToShow);
 
   if (total <= 1) {
     return null;

@@ -14,8 +14,6 @@ const Discover = () => {
   const [sort, setSort] = useState('popularity.desc');
   const [genres, setGenres] = useState('all');
   const [year, setYear] = useState(2019);
-  const [query, setQuery] = useState('');
-
 
   useEffect(() => {
     (async () => {
@@ -33,7 +31,6 @@ const Discover = () => {
     setPage(pageNumber);
   };
 
-
   return (
     <>
       <Heading>
@@ -41,11 +38,9 @@ const Discover = () => {
       </Heading>
       <FilterForm
         onGenresChange={event => setGenres(event.target.value)}
-        onKeywordsChange={event => setQuery(event.target.value)}
         onSortChange={event => setSort(event.target.value)}
         onYearChange={event => setYear(event.target.value)}
         sort={sort}
-        keywords={query}
         genres={genres}
         year={year}
       />
