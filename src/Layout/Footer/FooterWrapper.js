@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-const FooterWrapper = styled.div`
+const FooterWrapper = styled.footer`
   background-color: #161616;
   width: 100vw;
   height: 4em;

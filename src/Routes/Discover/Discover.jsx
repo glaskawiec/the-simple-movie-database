@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import Heading from './Heading';
+import Heading from '../../Common/Heading';
 import Movie from './Movie/Movie';
 import MoviesWrapper from './MoviesWrapper';
 import FilterForm from './Movie/FilterForm/FilterForm';
@@ -8,10 +8,11 @@ import Pagination from './Pagination/Pagination';
 import apiKey from '../../apiKey';
 import LoadingBars from './Movie/LoadingBars/LoadingBars';
 import LoadingScreen from './Movie/LoadingBars/LoadingScreen';
+import MoviesList from '../../Common/MoviesList';
 
 const api = 'https://api.themoviedb.org/3';
 
-const Movies = (props) => {
+const Discover = (props) => {
   const [isLoading, setIsLoading] = useState(false);
   const [results, setResults] = useState([]);
   const [page, setPage] = useState(1);
@@ -34,26 +35,6 @@ const Movies = (props) => {
     })();
   }, [page, year, genres, sort]);
 
-  useEffect(() => {
-    if (query.length > 3) {
-      (async () => {
-        setIsLoading(true);
-        const response = await fetch(`${api}/search/movie?api_key=${apiKey}&language=en-US&query=${query}&page=1&include_adult=false`);
-        const parsedResponse = await response.json();
-        setResults(parsedResponse.results);
-        setTotal(parsedResponse.total_pages);
-        setIsLoading(false);
-      })();
-    }
-  }, [query]);
-
-  const formatDescription = (text) => {
-    // @TODO: Correct format
-    if (text.length > 200) {
-      return `${text.substring(0, 200)}...`;
-    }
-    return text;
-  };
 
   console.log('render fired');
   return (
@@ -76,21 +57,9 @@ const Movies = (props) => {
         setPage={setPage}
         current={page}
       />
-      {isLoading
-        ? <LoadingScreen><LoadingBars /></LoadingScreen>
-        : (
-          <MoviesWrapper>
-            {results.map(movie => (
-              <Movie
-                key={movie.title}
-                posterSrc={`https://image.tmdb.org/t/p/w185_and_h278_bestv2${movie.poster_path}`}
-                description={formatDescription(movie.overview)}
-                metaInformation={movie.release_date}
-                title={movie.title}
-              />
-            ))}
-          </MoviesWrapper>
-        )}
+
+      <MoviesList isLoading={isLoading} movies={results} />
+
       <Pagination
         total={total}
         setPage={setPage}
@@ -100,8 +69,8 @@ const Movies = (props) => {
   );
 };
 
-Movies.propTypes = {
+Discover.propTypes = {
 
 };
 
-export default Movies;
+export default Discover;

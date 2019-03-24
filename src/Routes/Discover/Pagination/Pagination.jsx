@@ -29,6 +29,9 @@ const Pagination = ({ total, current, setPage }) => {
   const pagesToShow = calculatePages();
   console.log(pagesToShow);
 
+  if (total <= 1) {
+    return null;
+  }
 
   return (
     <PaginationWrapper>
