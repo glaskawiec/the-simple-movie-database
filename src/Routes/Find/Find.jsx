@@ -4,6 +4,7 @@ import TextInput from './TextInput/TextInput';
 import apiKey from '../../apiKey';
 import SearchInputForm from './SearchInputForm';
 import MoviesList from '../../Common/MoviesList/MoviesList';
+import requestTheMovieDbApi from '../../utils/requestTheMovieDbApi';
 
 const api = 'https://api.themoviedb.org/3';
 const fetchDelay = 500;
@@ -27,7 +28,14 @@ const Find = () => {
           setIsError(false);
           setIsLoading(true);
           try {
-            const response = await fetch(`${api}/search/movie?api_key=${apiKey}&language=en-US&query=${searchText}&page=${page}&include_adult=false`);
+            const request = {
+              endpoint: '/search/movie',
+              queryParameters: {
+                query: searchText,
+                page,
+              },
+            };
+            const response = await requestTheMovieDbApi(request);
             const parsedResponse = await response.json();
             if (!parsedResponse.results) {
               setIsError(true);
@@ -37,7 +45,6 @@ const Find = () => {
           } catch (error) {
             setIsError(true);
           }
-
           setIsLoading(false);
         })();
       }, fetchDelay);
