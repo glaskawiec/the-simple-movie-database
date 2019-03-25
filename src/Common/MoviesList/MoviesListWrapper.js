@@ -4,7 +4,7 @@ const MoviesListWrapper = styled.div`
   box-sizing: border-box;
   display: flex;   
   flex-wrap: wrap;
-  min-height: calc(100vh - 6em - 4em - 4em - 6em ${props => (!props.withPagination ? '- 11.75em' : '')});      
+  min-height: calc(100vh - 6em - 4em - 4em - 6em);      
   justify-content: ${props => (props.isLoading || props.isError ? 'center' : 'space-between')};
   align-items: center;
   
@@ -13,7 +13,7 @@ const MoviesListWrapper = styled.div`
   }
   
   @media (max-width: 576px) {
-   min-height: calc(100vh - 6em - 4em - 4em - 4em ${props => (!props.withPagination ? '- 25.25em' : '')});   
+   min-height: calc(100vh - 6em - 4em - 4em - 4em );   
   }
 `;
 

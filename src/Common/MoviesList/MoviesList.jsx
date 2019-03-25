@@ -17,7 +17,7 @@ const formatDescription = (text) => {
 const mobileSrc = 'w1000_and_h563_face';
 const desktopSrc = 'w185_and_h278_bestv2';
 
-const MoviesList = ({
+const MoviesList = React.memo(({
   movies, isLoading, totalPages, currentPage, onPageChange, isError,
 }) => {
   const isMobile = window.innerWidth <= 768;
@@ -30,7 +30,7 @@ const MoviesList = ({
     content = movies.map(movie => (
       <Movie
         key={movie.id}
-        posterSrc={`https://image.tmdb.org/t/p/${isMobile ? mobileSrc : desktopSrc}${movie.poster_path}`}
+        posterSrc={movie.poster_path ? `https://image.tmdb.org/t/p/${isMobile ? mobileSrc : desktopSrc}${movie.poster_path}` : null}
         description={formatDescription(movie.overview)}
         metaInformation={movie.release_date}
         title={movie.title}
@@ -58,7 +58,7 @@ const MoviesList = ({
       />
     </>
   );
-};
+});
 
 MoviesList.propTypes = {
   movies: PropTypes.arrayOf(PropTypes.object).isRequired,

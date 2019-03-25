@@ -10,14 +10,13 @@ import GetMoreInformation from './GetMoreInformation';
 import Row from '../Row';
 import Image from './Image/Image';
 
-const Movie = ({
+const Movie = React.memo(({
   title, metaInformation, description, posterSrc,
 }) => (
   <MovieWrapper>
     <Row>
       <ImageWrapper>
         <Image
-          alt={title}
           src={posterSrc}
         />
       </ImageWrapper>
@@ -31,13 +30,17 @@ const Movie = ({
       </ContentWrapper>
     </Row>
   </MovieWrapper>
-);
+));
 
 Movie.propTypes = {
   title: PropTypes.string.isRequired,
   metaInformation: PropTypes.string.isRequired,
   description: PropTypes.string.isRequired,
-  posterSrc: PropTypes.string.isRequired,
+  posterSrc: PropTypes.string,
+};
+
+Movie.defaultProps = {
+  posterSrc: null,
 };
 
 export default Movie;
