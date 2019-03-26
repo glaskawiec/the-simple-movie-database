@@ -8,6 +8,7 @@ const Themes = {
       mobileMenuOverlay: '#000000',
       card: '#FFFFFF',
       themeToggleThumb: '#161616',
+      paginationHover: '#CDCDCD',
     },
   },
   dark: {
@@ -19,6 +20,7 @@ const Themes = {
       mobileMenuOverlay: '#FFFFFF',
       card: '#090909',
       themeToggleThumb: '#FFFFFF',
+      paginationHover: '#292929',
     },
   },
 };

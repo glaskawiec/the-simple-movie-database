@@ -30,7 +30,7 @@ const Header = ({ history }) => {
               history={history}
             />
             <Logo />
-            <OffsetLogo />
+            <ThemeToggle isMobile/>
           </>
         ) : (
           <>

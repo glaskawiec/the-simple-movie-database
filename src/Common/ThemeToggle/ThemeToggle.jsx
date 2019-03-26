@@ -1,4 +1,5 @@
 import React, { useState, useContext } from 'react';
+import PropTypes from 'prop-types';
 import ToggleThumb from './ToggleThumb';
 import ToggleTrackX from './ToggleTrackX';
 import Toggle from './Toggle';
@@ -8,7 +9,7 @@ import { appContext } from '../../App';
 import MoonIcon from './MoonIcon';
 import SunIcon from './SunIcon';
 
-const ThemeToggle = () => {
+const ThemeToggle = ({ isMobile }) => {
   const [isChecked, setIsChecked] = useState(false);
   const { setTheme } = useContext(appContext);
 
@@ -23,6 +24,7 @@ const ThemeToggle = () => {
 
   return (
     <Toggle
+      isMobile={isMobile}
       onClick={onChange}
     >
       <ToggleTrack>
@@ -42,6 +44,14 @@ const ThemeToggle = () => {
       />
     </Toggle>
   );
+};
+
+ThemeToggle.propTypes = {
+  isMobile: PropTypes.bool,
+};
+
+ThemeToggle.defaultProps = {
+  isMobile: false,
 };
 
 export default ThemeToggle;

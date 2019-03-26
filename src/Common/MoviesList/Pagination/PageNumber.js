@@ -5,7 +5,7 @@ const PageNumber = styled.span`
   color: ${props => (props.isActive ? props.theme.colors.background : props.theme.colors.text)};
 
   &:hover {
-    background-color: ${props => (props.isActive ? props.theme.colors.primary : '#DDD')};
+    background-color: ${props => (props.isActive ? props.theme.colors.primary : props.theme.colors.paginationHover)};
   }
 `;
 
