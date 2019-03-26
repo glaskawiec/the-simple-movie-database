@@ -14,6 +14,7 @@ const Find = React.lazy(() => import('./Routes/Find/Find'));
 const mobileWidth = 576;
 const initialIsMobile = window.innerWidth <= mobileWidth;
 
+const appContext = createContext(null);
 
 const App = () => {
   const [isMobile, setIsMobile] = useState(initialIsMobile);
@@ -29,26 +30,24 @@ const App = () => {
 
   return (
     <BrowserRouter>
-      <appContext.Provider value={{ isMobile: initialIsMobile, theme, setTheme }}>
-        <isMobileContext.Provider value={isMobile}>
-          <ThemeProvider theme={Themes[theme]}>
-            <>
-              <Reset />
-              <GlobalStyle />
-              <Layout>
-                <Route path="/" exact component={Discover} />
-                <Suspense fallback={<div>Loading...</div>}>
-                  <Route path="/find" exact component={Find} />
-                </Suspense>
-              </Layout>
-            </>
-          </ThemeProvider>
-        </isMobileContext.Provider>
+      <appContext.Provider value={{ isMobile, theme, setTheme }}>
+        <ThemeProvider theme={Themes[theme]}>
+          <>
+            <Reset />
+            <GlobalStyle />
+            <Layout>
+              <Route path="/" exact component={Discover} />
+              <Suspense fallback={<div>Loading...</div>}>
+                <Route path="/find" exact component={Find} />
+              </Suspense>
+            </Layout>
+          </>
+        </ThemeProvider>
       </appContext.Provider>
     </BrowserRouter>
   );
 };
 
-export const isMobileContext = React.createContext(initialIsMobile);
-export const appContext = createContext(null);
+
 export default App;
+export { appContext };

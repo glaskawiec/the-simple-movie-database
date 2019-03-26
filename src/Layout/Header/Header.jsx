@@ -5,14 +5,14 @@ import HeaderStyled from './HeaderStyled';
 import Logo from './Logo/Logo';
 import HeaderWrapper from './HeaderWrapper';
 import Hamburger from './Hambruger/Hamburger';
-import { isMobileContext } from '../../App';
+import { appContext } from '../../App';
 import MobileMenu from './MobileMenu/MobileMenu';
 import Menu from './Menu/Menu';
 import ThemeToggle from '../../Common/ThemeToggle/ThemeToggle';
 
 const Header = ({ history }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const isMobile = useContext(isMobileContext);
+  const { isMobile } = useContext(appContext);
   return (
     <HeaderStyled>
       <HeaderWrapper>
