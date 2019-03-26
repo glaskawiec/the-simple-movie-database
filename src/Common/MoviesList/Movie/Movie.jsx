@@ -2,13 +2,13 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import MovieWrapper from './MovieWrapper';
 import ContentWrapper from './ContentWrapper';
-import ImageWrapper from './Image/ImageWrapper';
+import ImageWrapper from './ImageWrapper';
 import Title from './Title';
 import Description from './Description';
 import MetaInformation from './MetaInformation';
 import GetMoreInformation from './GetMoreInformation';
 import Row from '../Row';
-import Image from './Image/Image';
+import Image from './LoadableImage/LoadableImage';
 
 const Movie = React.memo(({
   title, metaInformation, description, posterSrc,

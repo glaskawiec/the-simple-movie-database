@@ -1,0 +1,32 @@
+import React, { useState, useEffect } from 'react';
+import PropTypes from 'prop-types';
+import noImageDesktop from '../../../../resources/images/no-image-desktop.svg';
+import noImageMobile from '../../../../resources/images/no-image-mobile.svg';
+import LoadableImageStyled from './LoadableImageStyled';
+
+const LoadableImage = React.memo(({ src }) => {
+  const isMobile = window.innerWidth <= 768;
+  const noImageSrc = isMobile ? noImageMobile : noImageDesktop;
+  const [showedImageSrc, setShowedImageSrc] = useState(noImageSrc);
+
+  useEffect(() => {
+    if (!src) {
+      return;
+    }
+    const img = new Image();
+    img.onload = () => setShowedImageSrc(src);
+    img.onerror = () => showedImageSrc(noImageSrc);
+    img.src = src;
+  });
+  return <LoadableImageStyled src={showedImageSrc} />;
+});
+
+LoadableImage.propTypes = {
+  src: PropTypes.string,
+};
+
+LoadableImage.defaultProps = {
+  src: null,
+};
+
+export default LoadableImage;
