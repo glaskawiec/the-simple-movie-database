@@ -21,7 +21,7 @@ const HamburgerInner = styled.div`
     &, &::before, &::after {
     width: 25px;
     height: 2px;
-    background-color: #ffffff;
+    background-color: ${props => props.theme.colors.background};
     border-radius: 4px;
     position: absolute;
     transition-property: -webkit-transform;

@@ -8,6 +8,8 @@ const SelectStyled = styled.select`
   height: 2.5em;
   font-size: 1em;
   padding-left: 0.5em;
+  color: ${props => props.theme.colors.text};
+  background-color: ${props => props.theme.colors.background};
   
   @media (max-width: 576px) {
     width:100%;

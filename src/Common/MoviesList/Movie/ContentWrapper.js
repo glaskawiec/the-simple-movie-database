@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 
 const ContentWrapper = styled.div`
-  color: #000000;
   font-size: 1em;
   height: 278px;
   box-sizing: border-box;

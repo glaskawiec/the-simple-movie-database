@@ -23,7 +23,7 @@ const LoadingBarsWrapper = styled.div`
   position: absolute;
   left: 6px;
   width: 13px;
-  background: ${props => props.theme.primary};
+  background: ${props => props.theme.colors.primary};
   animation: ${pulse} 1.2s cubic-bezier(0, 0.5, 0.5, 1) infinite;
 }
 

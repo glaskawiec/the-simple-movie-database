@@ -9,6 +9,7 @@ import OffsetLogo from './MobileMenu/OffsetLogo';
 import { isMobileContext } from '../../App';
 import MobileMenu from './MobileMenu/MobileMenu';
 import Menu from './Menu/Menu';
+import ThemeToggle from '../../Common/ThemeToggle/ThemeToggle';
 
 const Header = ({ history }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -35,6 +36,7 @@ const Header = ({ history }) => {
           <>
             <Logo />
             <Menu />
+            <ThemeToggle />
           </>
         )}
       </HeaderWrapper>

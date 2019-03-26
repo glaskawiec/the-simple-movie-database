@@ -3,7 +3,6 @@ import styled from 'styled-components';
 const Description = styled.p`
   word-wrap: break-word;
   white-space: normal;
-  color: #4d4d4d;
   font-size: 0.9em;
   line-height: 1.2em;
   overflow: hidden;

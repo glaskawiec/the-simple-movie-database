@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 const Overlay = styled.div`
   position: fixed;
-  background: #000000;
+  background: ${props => props.theme.colors.mobileMenuOverlay};
   top: 0;
   left: 0;
   width: 100%;

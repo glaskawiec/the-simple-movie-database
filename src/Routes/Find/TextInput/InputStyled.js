@@ -10,6 +10,9 @@ display: inline-block;
   border: 1px solid rgb(169, 169, 169);
   width: 100%;
   
+    color: ${props => props.theme.colors.text};
+  background-color: ${props => props.theme.colors.background};
+  
 `;
 
 export default InputStyled;
