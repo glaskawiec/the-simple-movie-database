@@ -5,7 +5,6 @@ import HeaderStyled from './HeaderStyled';
 import Logo from './Logo/Logo';
 import HeaderWrapper from './HeaderWrapper';
 import Hamburger from './Hambruger/Hamburger';
-import OffsetLogo from './MobileMenu/OffsetLogo';
 import { isMobileContext } from '../../App';
 import MobileMenu from './MobileMenu/MobileMenu';
 import Menu from './Menu/Menu';
@@ -30,7 +29,7 @@ const Header = ({ history }) => {
               history={history}
             />
             <Logo />
-            <ThemeToggle isMobile/>
+            <ThemeToggle isMobile />
           </>
         ) : (
           <>
