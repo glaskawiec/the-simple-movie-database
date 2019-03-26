@@ -27,7 +27,7 @@ const App = () => {
     });
   });
 
-
+  // @TODO: Add loading screen to Suspense
   return (
     <BrowserRouter>
       <appContext.Provider value={{ isMobile, theme, setTheme }}>
@@ -49,5 +49,4 @@ const App = () => {
 };
 
 
-export default App;
-export { appContext };
+export { App as default, appContext };
