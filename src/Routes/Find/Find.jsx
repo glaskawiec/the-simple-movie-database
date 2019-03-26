@@ -1,12 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import Heading from '../../Common/Heading';
 import TextInput from './TextInput/TextInput';
-import apiKey from '../../apiKey';
 import SearchInputForm from './SearchInputForm';
 import MoviesList from '../../Common/MoviesList/MoviesList';
 import requestTheMovieDbApi from '../../utils/requestTheMovieDbApi';
 
-const api = 'https://api.themoviedb.org/3';
 const fetchDelay = 500;
 
 const Find = () => {

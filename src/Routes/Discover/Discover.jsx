@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Heading from '../../Common/Heading';
 import FilterForm from './FilterForm/FilterForm';
-import apiKey from '../../apiKey';
 import MoviesList from '../../Common/MoviesList/MoviesList';
 import requestTheMovieDbApi from '../../utils/requestTheMovieDbApi';
 
@@ -29,7 +28,6 @@ const Discover = () => {
             with_genres: genres,
           },
         };
-        // const response = await fetch(`${api}/discover/movie?api_key=${apiKey}&language=en-US&sort_by=${sort}&include_adult=false&include_video=false&page=${page}&with_genres=${genres}&primary_release_year=${year}`);
         const response = await requestTheMovieDbApi(request);
         const parsedResponse = await response.json();
         if (!parsedResponse.results) {
