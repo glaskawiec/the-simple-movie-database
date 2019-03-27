@@ -1,65 +1,61 @@
 import React, { useState, useEffect } from 'react';
+import { useHoux } from 'houx';
 import Heading from '../../Common/Heading';
 import FilterForm from './FilterForm/FilterForm';
 import MoviesList from '../../Common/MoviesList/MoviesList';
 import requestTheMovieDbApi from '../../utils/requestTheMovieDbApi';
+import {
+  discoverRequestDataFailure,
+  discoverRequestDataIsPending,
+  discoverRequestDataSuccess, discoverSetOptions, discoverSetPagination,
+} from '../../Flux/Actions/discover';
 
 const Discover = () => {
-  const [isLoading, setIsLoading] = useState(false);
-  const [isError, setIsError] = useState(false);
-  const [results, setResults] = useState([]);
-  const [page, setPage] = useState(1);
-  const [total, setTotal] = useState(0);
-  const [sort, setSort] = useState('popularity.desc');
-  const [genres, setGenres] = useState('');
-  const [year, setYear] = useState('');
+  const [state, dispatch] = useHoux();
+  console.log(state);
+  const { options, request, pagination } = state.discover;
 
   useEffect(() => {
     (async () => {
-      setIsError(false);
-      setIsLoading(true);
       try {
-        const request = {
+        dispatch(discoverRequestDataIsPending());
+        const response = await requestTheMovieDbApi({
           endpoint: '/discover/movie',
           queryParameters: {
-            primary_release_year: year,
-            sort_by: sort,
-            page,
-            with_genres: genres,
+            primary_release_year: options.year,
+            sort_by: options.sort,
+            page: pagination.current,
+            with_genres: options.genres,
           },
-        };
-        const response = await requestTheMovieDbApi(request);
+        });
         const parsedResponse = await response.json();
         if (!parsedResponse.results) {
-          setIsError(true);
+          dispatch(discoverRequestDataFailure({}));
         }
-        setResults(parsedResponse.results);
-        setTotal(parsedResponse.total_pages);
+        dispatch(discoverRequestDataSuccess(parsedResponse.results));
+        dispatch(discoverSetPagination({
+          total: parsedResponse.total_pages,
+        }));
       } catch (error) {
-        setIsError(true);
+        dispatch(discoverRequestDataFailure(error));
       }
-      setIsLoading(false);
     })();
-  }, [page, year, genres, sort]);
+  }, [pagination.current]);
 
   const onPageChange = (pageNumber) => {
-    setIsLoading(true);
-    setPage(pageNumber);
+    dispatch(discoverSetPagination({ current: pageNumber }));
   };
 
   const onSortChange = (value) => {
-    setIsLoading(true);
-    setSort(value);
+    dispatch(discoverSetOptions({ sort: value }));
   };
 
   const onYearChange = (value) => {
-    setIsLoading(true);
-    setYear(value);
+    dispatch(discoverSetOptions({ year: value }));
   };
 
   const onGenresChange = (value) => {
-    setIsLoading(true);
-    setGenres(value);
+    dispatch(discoverSetOptions({ genres: value }));
   };
 
   return (
@@ -71,17 +67,17 @@ const Discover = () => {
         onGenresChange={event => onGenresChange(event.target.value)}
         onSortChange={event => onSortChange(event.target.value)}
         onYearChange={event => onYearChange(event.target.value)}
-        sort={sort}
-        genres={genres}
-        year={year}
+        sort={options.sort}
+        genres={options.genres}
+        year={options.year}
       />
       <MoviesList
-        totalPages={total}
+        totalPages={pagination.total}
         onPageChange={onPageChange}
-        currentPage={page}
-        isLoading={isLoading}
-        isError={isError}
-        movies={results}
+        currentPage={pagination.current}
+        isLoading={request.isPending}
+        isError={request.hadError}
+        movies={request.responseData}
       />
     </>
   );

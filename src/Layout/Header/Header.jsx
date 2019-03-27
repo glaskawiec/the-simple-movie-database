@@ -1,18 +1,17 @@
-import React, { useState, useContext } from 'react';
+import React, { useState } from 'react';
 import ReactRouterPropTypes from 'react-router-prop-types';
 import { withRouter } from 'react-router-dom';
 import HeaderStyled from './HeaderStyled';
 import Logo from './Logo/Logo';
 import HeaderWrapper from './HeaderWrapper';
 import Hamburger from './Hambruger/Hamburger';
-import { appContext } from '../../App';
 import MobileMenu from './MobileMenu/MobileMenu';
 import Menu from './Menu/Menu';
 import ThemeToggle from '../../Common/ThemeToggle/ThemeToggle';
 
 const Header = ({ history }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const { isMobile } = useContext(appContext);
+  const isMobile = window.innerWidth <= 576;
   return (
     <HeaderStyled>
       <HeaderWrapper>
