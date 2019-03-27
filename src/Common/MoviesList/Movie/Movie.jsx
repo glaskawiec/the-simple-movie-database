@@ -1,5 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import ReactRouterPropTypes from 'react-router-prop-types';
+import { withRouter } from 'react-router-dom';
 import MovieWrapper from './MovieWrapper';
 import ContentWrapper from './ContentWrapper';
 import ImageWrapper from './ImageWrapper';
@@ -11,36 +13,53 @@ import Row from '../Row';
 import Image from './LoadableImage/LoadableImage';
 
 const Movie = React.memo(({
-  title, metaInformation, description, posterSrc,
-}) => (
-  <MovieWrapper>
-    <Row>
-      <ImageWrapper>
-        <Image
-          src={posterSrc}
-        />
-      </ImageWrapper>
-      <ContentWrapper>
-        <Title>{title}</Title>
-        <MetaInformation>{metaInformation}</MetaInformation>
-        <Description>
-          {description}
-        </Description>
-        <GetMoreInformation>Get more information</GetMoreInformation>
-      </ContentWrapper>
-    </Row>
-  </MovieWrapper>
-));
+  title,
+  metaInformation,
+  description,
+  posterSrc,
+  history,
+  id,
+}) => {
+  const onGetMoreInformationClick = () => {
+    history.push({ pathname: `/movie/${id}` });
+  };
+
+  return (
+    <MovieWrapper>
+      <Row>
+        <ImageWrapper>
+          <Image
+            src={posterSrc}
+          />
+        </ImageWrapper>
+        <ContentWrapper>
+          <Title>{title}</Title>
+          <MetaInformation>{metaInformation}</MetaInformation>
+          <Description>
+            {description}
+          </Description>
+          <GetMoreInformation
+            onClick={onGetMoreInformationClick}
+          >
+            {'Get more information'}
+          </GetMoreInformation>
+        </ContentWrapper>
+      </Row>
+    </MovieWrapper>
+  );
+});
 
 Movie.propTypes = {
   title: PropTypes.string.isRequired,
   metaInformation: PropTypes.string.isRequired,
   description: PropTypes.string.isRequired,
+  id: PropTypes.number.isRequired,
   posterSrc: PropTypes.string,
+  history: ReactRouterPropTypes.history.isRequired,
 };
 
 Movie.defaultProps = {
   posterSrc: null,
 };
 
-export default Movie;
+export default withRouter(Movie);

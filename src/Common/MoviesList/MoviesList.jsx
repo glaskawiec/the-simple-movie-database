@@ -30,6 +30,7 @@ const MoviesList = React.memo(({
     content = movies.map(movie => (
       <Movie
         key={movie.id}
+        id={movie.id}
         posterSrc={movie.poster_path ? `https://image.tmdb.org/t/p/${isMobile ? mobileSrc : desktopSrc}${movie.poster_path}` : null}
         description={formatDescription(movie.overview)}
         metaInformation={movie.release_date}

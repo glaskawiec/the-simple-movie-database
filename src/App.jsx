@@ -10,6 +10,7 @@ import Discover from './Routes/Discover/Discover';
 import Themes from './Themes';
 
 const Find = React.lazy(() => import('./Routes/Find/Find'));
+const Movie = React.lazy(() => import('./Routes/Movie/Movie'));
 
 const mobileWidth = 576;
 const initialIsMobile = window.innerWidth <= mobileWidth;
@@ -39,6 +40,7 @@ const App = () => {
               <Route path="/" exact component={Discover} />
               <Suspense fallback={<div>Loading...</div>}>
                 <Route path="/find" exact component={Find} />
+                <Route path="/movie/:id" exact component={Movie} />
               </Suspense>
             </Layout>
           </>
