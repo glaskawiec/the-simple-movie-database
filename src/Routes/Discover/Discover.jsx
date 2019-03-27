@@ -12,8 +12,9 @@ import {
 
 const Discover = () => {
   const [state, dispatch] = useHoux();
-  console.log(state);
   const { options, request, pagination } = state.discover;
+  const { year, sort, genres } = options;
+  const { current, total } = pagination;
 
   useEffect(() => {
     (async () => {
@@ -22,10 +23,10 @@ const Discover = () => {
         const response = await requestTheMovieDbApi({
           endpoint: '/discover/movie',
           queryParameters: {
-            primary_release_year: options.year,
-            sort_by: options.sort,
+            primary_release_year: year,
+            sort_by: sort,
             page: pagination.current,
-            with_genres: options.genres,
+            with_genres: genres,
           },
         });
         const parsedResponse = await response.json();
@@ -40,7 +41,7 @@ const Discover = () => {
         dispatch(discoverRequestDataFailure(error));
       }
     })();
-  }, [pagination.current]);
+  }, [current, sort, genres, year]);
 
   const onPageChange = (pageNumber) => {
     dispatch(discoverSetPagination({ current: pageNumber }));
@@ -67,14 +68,14 @@ const Discover = () => {
         onGenresChange={event => onGenresChange(event.target.value)}
         onSortChange={event => onSortChange(event.target.value)}
         onYearChange={event => onYearChange(event.target.value)}
-        sort={options.sort}
-        genres={options.genres}
-        year={options.year}
+        sort={sort}
+        genres={genres}
+        year={year}
       />
       <MoviesList
-        totalPages={pagination.total}
+        totalPages={total}
         onPageChange={onPageChange}
-        currentPage={pagination.current}
+        currentPage={current}
         isLoading={request.isPending}
         isError={request.hadError}
         movies={request.responseData}
