@@ -5,6 +5,7 @@ import {
   DISCOVER_SET_OPTIONS,
   DISCOVER_SET_PAGINATION,
 } from '../ActionTypes/discover';
+import requestTheMovieDbApi from '../../utils/requestTheMovieDbApi';
 
 export const discoverSetPagination = pagination => ({
   type: DISCOVER_SET_PAGINATION,
@@ -25,3 +26,20 @@ export const discoverRequestDataFailure = error => ({
   type: DISCOVER_REQUEST_DATA_FAILURE,
   error,
 });
+
+export const discoverRequestData = request => async (dispatch) => {
+  try {
+    dispatch(discoverRequestDataIsPending());
+    const response = await requestTheMovieDbApi(request);
+    const parsedResponse = await response.json();
+    if (!parsedResponse.results) {
+      dispatch(discoverRequestDataFailure({}));
+    }
+    dispatch(discoverRequestDataSuccess(parsedResponse.results));
+    dispatch(discoverSetPagination({
+      total: parsedResponse.total_pages,
+    }));
+  } catch (error) {
+    dispatch(discoverRequestDataFailure(error));
+  }
+};

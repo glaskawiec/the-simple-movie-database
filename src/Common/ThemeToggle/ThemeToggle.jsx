@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { useHoux } from 'houx';
 import ToggleThumb from './ToggleThumb';
@@ -12,7 +12,7 @@ import { globalThemeChange } from '../../Flux/Actions/global';
 
 const ThemeToggle = ({ isMobile }) => {
   const [isChecked, setIsChecked] = useState(false);
-  const [state, dispatch] = useHoux();
+  const { dispatch } = useHoux();
 
   const onChange = () => {
     setIsChecked(!isChecked);

@@ -1,46 +1,30 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { useHoux } from 'houx';
 import Heading from '../../Common/Heading';
 import FilterForm from './FilterForm/FilterForm';
 import MoviesList from '../../Common/MoviesList/MoviesList';
-import requestTheMovieDbApi from '../../utils/requestTheMovieDbApi';
 import {
-  discoverRequestDataFailure,
-  discoverRequestDataIsPending,
-  discoverRequestDataSuccess, discoverSetOptions, discoverSetPagination,
+  discoverSetOptions,
+  discoverSetPagination,
+  discoverRequestData,
 } from '../../Flux/Actions/discover';
 
 const Discover = () => {
-  const [state, dispatch] = useHoux();
+  const { state, dispatch } = useHoux();
   const { options, request, pagination } = state.discover;
   const { year, sort, genres } = options;
   const { current, total } = pagination;
 
   useEffect(() => {
-    (async () => {
-      try {
-        dispatch(discoverRequestDataIsPending());
-        const response = await requestTheMovieDbApi({
-          endpoint: '/discover/movie',
-          queryParameters: {
-            primary_release_year: year,
-            sort_by: sort,
-            page: pagination.current,
-            with_genres: genres,
-          },
-        });
-        const parsedResponse = await response.json();
-        if (!parsedResponse.results) {
-          dispatch(discoverRequestDataFailure({}));
-        }
-        dispatch(discoverRequestDataSuccess(parsedResponse.results));
-        dispatch(discoverSetPagination({
-          total: parsedResponse.total_pages,
-        }));
-      } catch (error) {
-        dispatch(discoverRequestDataFailure(error));
-      }
-    })();
+    dispatch(discoverRequestData({
+      endpoint: '/discover/movie',
+      queryParameters: {
+        primary_release_year: year,
+        sort_by: sort,
+        page: pagination.current,
+        with_genres: genres,
+      },
+    }));
   }, [current, sort, genres, year]);
 
   const onPageChange = (pageNumber) => {

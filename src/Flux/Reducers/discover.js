@@ -26,7 +26,7 @@ export const initialState = {
 };
 
 const discoverReducer = (state = initialState, action) => {
-  switch (action && action.type) {
+  switch (action.type) {
     case DISCOVER_REQUEST_DATA_IS_PENDING:
       const newState1 = cloneObject(state);
       newState1.request.hadError = false;
