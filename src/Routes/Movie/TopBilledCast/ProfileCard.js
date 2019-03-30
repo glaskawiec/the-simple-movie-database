@@ -3,6 +3,7 @@ import styled from 'styled-components';
 const ProfileCard = styled.li`
     border: 1px solid #e3e3e3;
     padding-bottom: 10px;
+    margin-bottom: 10px;
     width: 140px;
     box-sizing: border-box;
     margin-right: 10px;

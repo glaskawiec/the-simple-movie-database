@@ -18,7 +18,7 @@ import parseDate from '../../utils/parseDate';
 import LoadingScreen from '../../Common/LoadingScreen/LoadingScreen';
 import RouteWrapper from '../../Common/RouteWrapper';
 
-const { imageServiceUrl, largeImageSizeUrl } = config;
+const { imageServiceUrl, largeImageSizeUrl, mobileImageSizeUrl } = config;
 const Movie = ({ location }) => {
   const { id } = location;
 
@@ -55,11 +55,10 @@ const Movie = ({ location }) => {
 
   const isDataRequestPending = isDetailsRequestPending || isCreditsRequestPending;
 
-
   const releaseDate = release_date ? parseDate(release_date) : 'Unknown release date';
   const normalizedGenres = getGenres(genres);
   const featuredCrew = crew && crew.slice(0, 6);
-  const topBilledCast = cast && cast.slice(0, 7);
+  const topBilledCast = cast && cast.slice(0, 6);
   const getRuntime = (runTime) => {
     if (runTime) {
       return `${runtime} min`;
@@ -67,11 +66,13 @@ const Movie = ({ location }) => {
 
     return 'unknown runtime';
   };
-  const getMoviePosterSource = (posterPath) => {
-    if (!posterPath) {
-      return null;
+
+  const getPosterSource = (posterPath) => {
+    const isMobile = window.innerWidth <= 768;
+    if (posterPath) {
+      return `${imageServiceUrl}/${isMobile ? mobileImageSizeUrl : largeImageSizeUrl}${posterPath}`;
     }
-    return `${imageServiceUrl}/${largeImageSizeUrl}${posterPath}`;
+    return null;
   };
 
   // @TODO: Add error handling
@@ -79,13 +80,12 @@ const Movie = ({ location }) => {
     return <LoadingScreen />;
   }
 
-
   return (
     <RouteWrapper>
       <MovieWrapper>
         <ImageWrapper>
           <LoadableImage
-            src={getMoviePosterSource(poster_path)}
+            src={getPosterSource(poster_path)}
           />
         </ImageWrapper>
         <ContentWrapper>

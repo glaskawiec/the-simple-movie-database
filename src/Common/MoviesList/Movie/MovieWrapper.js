@@ -22,7 +22,7 @@ const MovieWrapper = styled.div`
   }
   
    @media (max-width: 576px) {
-      width: 80%;
+      width: 100%;
   }
 `;
 

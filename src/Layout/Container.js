@@ -5,6 +5,10 @@ const Container = styled.div`
   margin-right: auto;
   margin-left: auto;
   
+  @media (max-width: 576px) {
+    width: 80%;
+  }
+  
   @media (min-width: 576px) {
     max-width: 540px;
   }

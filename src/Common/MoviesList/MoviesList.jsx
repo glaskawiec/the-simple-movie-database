@@ -27,8 +27,16 @@ const MoviesList = React.memo(({
   onPageChange,
   isError,
 }) => {
-  const isMobile = window.innerWidth <= 768;
   let content;
+
+  const getPosterSource = (posterPath) => {
+    const isMobile = window.innerWidth <= 768;
+    if (posterPath) {
+      return `${imageServiceUrl}/${isMobile ? mobileImageSizeUrl : desktopImageSizeUrl}${posterPath}`;
+    }
+    return null;
+  };
+
   if (isError || !movies) {
     content = <ErrorMessage />;
   } else if (isLoading) {
@@ -38,7 +46,7 @@ const MoviesList = React.memo(({
       <Movie
         key={movie.id}
         id={movie.id}
-        posterSrc={movie.poster_path ? `${imageServiceUrl}/${isMobile ? mobileImageSizeUrl : desktopImageSizeUrl}${movie.poster_path}` : null}
+        posterSrc={getPosterSource(movie.poster_path)}
         description={formatDescription(movie.overview)}
         metaInformation={parseDate(movie.release_date)}
         title={movie.title}

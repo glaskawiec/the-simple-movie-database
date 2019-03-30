@@ -13,7 +13,7 @@ const PaginationWrapper = styled.div`
     justify-content: center;
     align-items: flex-start;
     flex-wrap: wrap;
-    width:80%;
+    width: 100%;
     margin-left: auto;
     margin-right: auto;
   }
