@@ -12,17 +12,27 @@ import Genres from './Genres';
 import Runtime from './Runtime';
 import Description from './Description';
 import TopBilledCast from './TopBilledCast/TopBilledCast';
-import LoadingBars from '../../Common/LoadingBars/LoadingBars';
 import FeaturedCrew from './FeaturedCrew/FeaturedCrew';
 import ReleaseDate from './ReleaseDate';
 import parseDate from '../../utils/parseDate';
+import LoadingScreen from '../../Common/LoadingScreen/LoadingScreen';
+import RouteWrapper from '../../Common/RouteWrapper';
 
 const { imageServiceUrl, largeImageSizeUrl } = config;
 const Movie = ({ location }) => {
   const { id } = location;
+
+  if (!id) {
+    return null;
+  }
+
   const { state, dispatch } = useHoux();
   const {
-    poster_path, original_title, genres, runtime, overview, release_date,
+    poster_path,
+    original_title,
+    genres, runtime,
+    overview,
+    release_date,
   } = state.movie.details.request.responseData;
 
   const { crew, cast } = state.movie.credits.request.responseData;
@@ -45,31 +55,49 @@ const Movie = ({ location }) => {
   const isDataRequestPending = isDetailsRequestPending || isCreditsRequestPending;
 
 
+  const releaseDate = release_date ? parseDate(release_date) : 'Unknown release date';
+  const normalizedGenres = getGenres(genres);
+  const featuredCrew = crew && crew.slice(0, 6);
+  const topBilledCast = cast && cast.slice(0, 7);
+  const getRuntime = (runTime) => {
+    if (runTime) {
+      return `${runtime} min`;
+    }
+
+    return 'unknown runtime';
+  };
+  const getMoviePosterSource = (posterPath) => {
+    if (!posterPath) {
+      return null;
+    }
+    return `${imageServiceUrl}/${largeImageSizeUrl}${posterPath}`;
+  };
+
   // @TODO: Add error handling
-  if (isDataRequestPending) {
-    return <LoadingBars />;
+  if (isDataRequestPending && releaseDate && normalizedGenres && featuredCrew && topBilledCast) {
+    return <LoadingScreen />;
   }
 
 
   return (
-    <>
+    <RouteWrapper>
       <MovieWrapper>
         <ImageWrapper>
           <LoadableImage
-            src={`${imageServiceUrl}/${largeImageSizeUrl}${poster_path}`}
+            src={getMoviePosterSource(poster_path)}
           />
         </ImageWrapper>
         <ContentWrapper>
           <Title>{original_title}</Title>
-          <ReleaseDate>{parseDate(release_date)}</ReleaseDate>
-          <Genres>{getGenres(genres)}</Genres>
-          <Runtime>{`${runtime} min`}</Runtime>
+          <ReleaseDate>{releaseDate}</ReleaseDate>
+          <Genres>{normalizedGenres}</Genres>
+          <Runtime>{getRuntime(runtime)}</Runtime>
           <Description>{overview}</Description>
         </ContentWrapper>
       </MovieWrapper>
-      <FeaturedCrew crew={crew && crew.slice(0, 6)} />
-      <TopBilledCast cast={cast && cast.slice(0, 7)} />
-    </>
+      <FeaturedCrew data={featuredCrew} />
+      <TopBilledCast data={topBilledCast} />
+    </RouteWrapper>
   );
 };
 

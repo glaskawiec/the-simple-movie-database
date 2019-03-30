@@ -7,6 +7,7 @@ import Layout from './Layout/Layout';
 import GlobalStyle from './GlobalStyle';
 import Discover from './Routes/Discover/Discover';
 import Themes from './Themes';
+import LoadingScreen from './Common/LoadingScreen/LoadingScreen';
 
 const Find = React.lazy(() => import('./Routes/Find/Find'));
 const Movie = React.lazy(() => import('./Routes/Movie/Movie'));
@@ -22,7 +23,7 @@ const App = () => {
           <GlobalStyle />
           <Layout>
             <Route path="/" exact component={Discover} />
-            <Suspense fallback={<div>Loading...</div>}>
+            <Suspense fallback={<LoadingScreen />}>
               <Route path="/find" exact component={Find} />
               <Route path="/movie/:title" exact component={Movie} />
             </Suspense>

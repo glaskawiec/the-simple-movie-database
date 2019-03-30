@@ -4,6 +4,7 @@ import TextInput from './TextInput/TextInput';
 import SearchInputForm from './SearchInputForm';
 import MoviesList from '../../Common/MoviesList/MoviesList';
 import requestTheMovieDbApi from '../../utils/requestTheMovieDbApi';
+import RouteWrapper from '../../Common/RouteWrapper';
 
 const fetchDelay = 500;
 

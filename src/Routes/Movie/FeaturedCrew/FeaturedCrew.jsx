@@ -7,17 +7,17 @@ import Name from './Name';
 import ProfileNoImage from './ProfileNoImage';
 import ProfilesWrapper from './ProfilesWrapper';
 
-const FeaturedCrew = ({ crew }) => {
-  if (!crew) {
+const FeaturedCrew = ({ data }) => {
+  if (!data || data.length === 0) {
     return null;
   }
-  console.log(crew);
+  console.log(data);
   return (
     <FeaturedCrewWrapper>
       <Heading>Featured Crew</Heading>
       <ProfilesWrapper>
-        {crew.map(crewMember => (
-          <ProfileNoImage>
+        {data.map(crewMember => (
+          <ProfileNoImage key={crewMember.credit_id}>
             <Name>{crewMember.name}</Name>
             <Function>{crewMember.job}</Function>
           </ProfileNoImage>
@@ -29,7 +29,7 @@ const FeaturedCrew = ({ crew }) => {
 
 
 FeaturedCrew.propTypes = {
-  crew: PropTypes.object.isRequired,
+  data: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
 
 export default FeaturedCrew;

@@ -12,19 +12,26 @@ import ProfileCard from './ProfileCard';
 
 const { imageServiceUrl, profileImageSizeUrl } = config;
 
-const TopBilledCast = ({ cast }) => {
-  if (!cast) {
+const TopBilledCast = ({ data }) => {
+  if (!data || data.length === 0) {
     return null;
   }
+
+  const getProfileImageSource = (profilePath) => {
+    if (!profilePath) {
+      return null;
+    }
+    return `${imageServiceUrl}/${profileImageSizeUrl}${profilePath}`;
+  };
 
   return (
     <TopBilledCastWrapper>
       <Heading>Top Billed Cast</Heading>
       <ProfilesCardsWrapper>
-        {cast.map(actor => (
-          <ProfileCard>
+        {data.map(actor => (
+          <ProfileCard key={actor.id}>
             <ProfileImageWrapper>
-              <LoadableImage src={`${imageServiceUrl}/${profileImageSizeUrl}${actor.profile_path}`} />
+              <LoadableImage src={getProfileImageSource(actor.profile_path)} />
             </ProfileImageWrapper>
             <Name>{actor.name}</Name>
             <Role>{actor.character}</Role>
@@ -36,7 +43,7 @@ const TopBilledCast = ({ cast }) => {
 };
 
 TopBilledCast.propTypes = {
-  cast: PropTypes.object.isRequired,
+  data: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
 
 export default TopBilledCast;
