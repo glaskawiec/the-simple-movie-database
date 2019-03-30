@@ -1,16 +1,15 @@
 import styled from 'styled-components';
 
 const HeaderWrapper = styled.div`
-@media (max-width: 576px) {
-   display: flex;
+  width: 100%;
+  margin-right: auto;
+  margin-left: auto;
+
+  @media (max-width: 576px) {
+    display: flex;
     justify-content: space-between;
     align-items: center;
   }
-  
-    width: 100%;
-  margin-right: auto;
-  margin-left: auto;
-  
    
   @media (min-width: 576px) {
     max-width: 540px;

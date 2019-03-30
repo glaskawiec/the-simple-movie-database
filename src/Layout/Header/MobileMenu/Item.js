@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 const Item = styled.li`
-  color: #FFFFFF;
+  color: ${props => props.theme.colors.background};
   animation-delay: .35s;
   display: block;
   margin-bottom: 1em;
