@@ -6,8 +6,12 @@ The user should be able to enter some text into a search field, see and browser 
 
 ## :fire: Features
 * Started from create-react-app 2.1.8
+* State management with Houx (Flux)
 * Made with hooks
 * Dynamic themes
+* Slugifyed urls
+* Lazy loaded routes
+* Memoized components
 
 ## :pencil: Prerequisites
 *  [Git](https://git-scm.com) installed

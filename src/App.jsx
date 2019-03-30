@@ -24,7 +24,7 @@ const App = () => {
             <Route path="/" exact component={Discover} />
             <Suspense fallback={<div>Loading...</div>}>
               <Route path="/find" exact component={Find} />
-              <Route path="/movie/:id" exact component={Movie} />
+              <Route path="/movie/:title" exact component={Movie} />
             </Suspense>
           </Layout>
         </>
