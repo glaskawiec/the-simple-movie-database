@@ -9,8 +9,8 @@ import Title from './Title';
 import Description from './Description';
 import MetaInformation from './MetaInformation';
 import GetMoreInformation from './GetMoreInformation';
-import Row from '../Row';
-import Image from './LoadableImage/LoadableImage';
+import Row from '../../Row';
+import LoadableImage from '../../LoadableImage/LoadableImage';
 import slugify from '../../../utils/slugify';
 
 const Movie = React.memo(({
@@ -29,7 +29,7 @@ const Movie = React.memo(({
     <MovieWrapper>
       <Row>
         <ImageWrapper>
-          <Image
+          <LoadableImage
             src={posterSrc}
           />
         </ImageWrapper>

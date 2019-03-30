@@ -2,9 +2,13 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import MoviesListWrapper from './MoviesListWrapper';
 import Pagination from './Pagination/Pagination';
-import LoadingBars from './Movie/LoadingBars/LoadingBars';
+import LoadingBars from '../LoadingBars/LoadingBars';
 import Movie from './Movie/Movie';
-import ErrorMessage from './Movie/ErrorMessage/ErrorMessage';
+import ErrorMessage from '../ErrorMessage/ErrorMessage';
+import config from '../../config';
+import parseDate from '../../utils/parseDate';
+
+const { imageServiceUrl, mobileImageSizeUrl, desktopImageSizeUrl } = config;
 
 const formatDescription = (text) => {
   // @TODO: Correct format
@@ -14,8 +18,6 @@ const formatDescription = (text) => {
   return text;
 };
 
-const mobileSrc = 'w1000_and_h563_face';
-const desktopSrc = 'w185_and_h278_bestv2';
 
 const MoviesList = React.memo(({
   movies, isLoading, totalPages, currentPage, onPageChange, isError,
@@ -31,9 +33,9 @@ const MoviesList = React.memo(({
       <Movie
         key={movie.id}
         id={movie.id}
-        posterSrc={movie.poster_path ? `https://image.tmdb.org/t/p/${isMobile ? mobileSrc : desktopSrc}${movie.poster_path}` : null}
+        posterSrc={movie.poster_path ? `${imageServiceUrl}/${isMobile ? mobileImageSizeUrl : desktopImageSizeUrl}${movie.poster_path}` : null}
         description={formatDescription(movie.overview)}
-        metaInformation={movie.release_date}
+        metaInformation={parseDate(movie.release_date)}
         title={movie.title}
       />
     ));

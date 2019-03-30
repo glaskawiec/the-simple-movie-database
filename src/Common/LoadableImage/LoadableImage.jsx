@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import noImageDesktop from '../../../../resources/images/no-image-desktop.svg';
-import noImageMobile from '../../../../resources/images/no-image-mobile.svg';
+import noImageDesktop from '../../resources/images/no-image-desktop.svg';
+import noImageMobile from '../../resources/images/no-image-mobile.svg';
 import LoadableImageStyled from './LoadableImageStyled';
 
 const LoadableImage = React.memo(({ src }) => {
@@ -15,7 +15,7 @@ const LoadableImage = React.memo(({ src }) => {
     }
     const img = new Image();
     img.onload = () => setShowedImageSrc(src);
-    img.onerror = () => showedImageSrc(noImageSrc);
+    img.onerror = () => setShowedImageSrc(noImageSrc);
     img.src = src;
   });
   return <LoadableImageStyled src={showedImageSrc} />;
