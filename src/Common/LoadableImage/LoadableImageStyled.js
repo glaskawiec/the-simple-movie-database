@@ -3,8 +3,8 @@ import styled from 'styled-components';
 const LoadableImageStyled = styled.img`
   background-color: #dbdbdb;
   display: block;
-  max-width: 100%;
   height: 100%;
+  width: 100%;
   margin: auto;
   cursor: ${props => (props.onClick ? 'pointer' : 'default')};
   

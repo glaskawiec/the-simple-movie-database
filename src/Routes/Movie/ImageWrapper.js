@@ -3,12 +3,8 @@ import styled from 'styled-components';
 const ImageWrapper = styled.div`
     display: block;
     box-sizing: border-box;
-    //width: 300px;
+    width: 100%;
     max-height: 100%;
-    //position: relative;
-    // flex: 0 0 33.333333%;m
-    //max-width: 33.333333%;
-    
     border-width: 0px;
     border-radius: 4px;
     overflow: hidden;
