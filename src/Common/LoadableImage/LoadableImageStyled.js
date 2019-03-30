@@ -6,6 +6,7 @@ const LoadableImageStyled = styled.img`
   max-width: 100%;
   height: 100%;
   margin: auto;
+  cursor: ${props => (props.onClick ? 'pointer' : 'default')};
   
   @media (max-width: 768px) {
     flex: 100%;

@@ -4,7 +4,7 @@ import noImageDesktop from '../../resources/images/no-image-desktop.svg';
 import noImageMobile from '../../resources/images/no-image-mobile.svg';
 import LoadableImageStyled from './LoadableImageStyled';
 
-const LoadableImage = React.memo(({ src }) => {
+const LoadableImage = React.memo(({ src, onClick }) => {
   const isMobile = window.innerWidth <= 768;
   const noImageSrc = isMobile ? noImageMobile : noImageDesktop;
   const [showedImageSrc, setShowedImageSrc] = useState(noImageSrc);
@@ -18,15 +18,17 @@ const LoadableImage = React.memo(({ src }) => {
     img.onerror = () => setShowedImageSrc(noImageSrc);
     img.src = src;
   });
-  return <LoadableImageStyled src={showedImageSrc} />;
+  return <LoadableImageStyled onClick={onClick} src={showedImageSrc} />;
 });
 
 LoadableImage.propTypes = {
   src: PropTypes.string,
+  onClick: PropTypes.func,
 };
 
 LoadableImage.defaultProps = {
   src: null,
+  onClick: null,
 };
 
 export default LoadableImage;

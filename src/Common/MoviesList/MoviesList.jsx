@@ -18,7 +18,6 @@ const formatDescription = (text) => {
   return text;
 };
 
-
 const MoviesList = React.memo(({
   movies,
   isLoading,

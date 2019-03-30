@@ -30,11 +30,12 @@ const Movie = React.memo(({
       <Row>
         <ImageWrapper>
           <LoadableImage
+            onClick={onGetMoreInformationClick}
             src={posterSrc}
           />
         </ImageWrapper>
         <ContentWrapper>
-          <Title>{title}</Title>
+          <Title onClick={onGetMoreInformationClick}>{title}</Title>
           <MetaInformation>{metaInformation}</MetaInformation>
           <Description>
             {description}
