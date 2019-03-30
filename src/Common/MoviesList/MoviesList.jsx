@@ -20,11 +20,16 @@ const formatDescription = (text) => {
 
 
 const MoviesList = React.memo(({
-  movies, isLoading, totalPages, currentPage, onPageChange, isError,
+  movies,
+  isLoading,
+  totalPages,
+  currentPage,
+  onPageChange,
+  isError,
 }) => {
   const isMobile = window.innerWidth <= 768;
   let content;
-  if (isError) {
+  if (isError || !movies) {
     content = <ErrorMessage />;
   } else if (isLoading) {
     content = <LoadingBars />;

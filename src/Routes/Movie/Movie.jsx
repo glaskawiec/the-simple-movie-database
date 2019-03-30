@@ -29,8 +29,9 @@ const Movie = ({ location }) => {
   const { state, dispatch } = useHoux();
   const {
     poster_path,
-    original_title,
-    genres, runtime,
+    title,
+    genres,
+    runtime,
     overview,
     release_date,
   } = state.movie.details.request.responseData;
@@ -45,7 +46,7 @@ const Movie = ({ location }) => {
     dispatch(movieRequestCredits({
       endpoint: `/movie/${id}/credits`,
     }));
-  }, [true]);
+  }, [id]);
 
   const getGenres = (genresX = []) => genresX.map(genre => genre.name).join(', ');
 
@@ -88,7 +89,7 @@ const Movie = ({ location }) => {
           />
         </ImageWrapper>
         <ContentWrapper>
-          <Title>{original_title}</Title>
+          <Title>{title}</Title>
           <ReleaseDate>{releaseDate}</ReleaseDate>
           <Genres>{normalizedGenres}</Genres>
           <Runtime>{getRuntime(runtime)}</Runtime>

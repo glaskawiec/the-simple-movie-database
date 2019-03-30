@@ -11,7 +11,7 @@ const FeaturedCrew = ({ data }) => {
   if (!data || data.length === 0) {
     return null;
   }
-  console.log(data);
+
   return (
     <FeaturedCrewWrapper>
       <Heading>Featured Crew</Heading>
@@ -27,9 +27,12 @@ const FeaturedCrew = ({ data }) => {
   );
 };
 
-
 FeaturedCrew.propTypes = {
-  data: PropTypes.arrayOf(PropTypes.object).isRequired,
+  data: PropTypes.arrayOf(PropTypes.object),
+};
+
+FeaturedCrew.defaultProps = {
+  data: null,
 };
 
 export default FeaturedCrew;

@@ -43,7 +43,11 @@ const TopBilledCast = ({ data }) => {
 };
 
 TopBilledCast.propTypes = {
-  data: PropTypes.arrayOf(PropTypes.object).isRequired,
+  data: PropTypes.arrayOf(PropTypes.object),
+};
+
+TopBilledCast.defaultProps = {
+  data: null,
 };
 
 export default TopBilledCast;
