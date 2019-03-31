@@ -1,0 +1,1 @@
+export const FIND_SET_SEARCH_TEXT = 'FIND_SET_SEARCH_TEXT';

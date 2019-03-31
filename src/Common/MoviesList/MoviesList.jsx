@@ -76,12 +76,16 @@ const MoviesList = React.memo(({
 });
 
 MoviesList.propTypes = {
-  movies: PropTypes.arrayOf(PropTypes.object).isRequired,
+  movies: PropTypes.arrayOf(PropTypes.object),
   isLoading: PropTypes.bool.isRequired,
   isError: PropTypes.bool.isRequired,
   totalPages: PropTypes.number.isRequired,
   currentPage: PropTypes.number.isRequired,
   onPageChange: PropTypes.func.isRequired,
+};
+
+MoviesList.defaultProps = {
+  movies: [],
 };
 
 export default MoviesList;

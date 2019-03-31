@@ -6,10 +6,12 @@ import App from './App';
 import global from './Flux/Reducers/global';
 import discover from './Flux/Reducers/discover';
 import requests from './Flux/Reducers/requests';
+import find from './Flux/Reducers/find';
 
 const reducers = {
   global,
   discover,
+  find,
   requests,
 };
 

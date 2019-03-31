@@ -3,7 +3,6 @@ import {
   DISCOVER_SET_PAGINATION,
 } from '../ActionTypes/discover';
 
-
 export const discoverSetPagination = pagination => ({
   type: DISCOVER_SET_PAGINATION,
   pagination,

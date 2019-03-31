@@ -16,8 +16,13 @@ const Logo = ({ history, isMenuOpen, isDarkTheme }) => (
 
 Logo.propTypes = {
   history: ReactRouterPropTypes.history.isRequired,
-  isMenuOpen: PropTypes.bool.isRequired,
-  isDarkTheme: PropTypes.bool.isRequired,
+  isMenuOpen: PropTypes.bool,
+  isDarkTheme: PropTypes.bool,
+};
+
+Logo.defaultProps = {
+  isMenuOpen: false,
+  isDarkTheme: false,
 };
 
 export default withRouter(Logo);
