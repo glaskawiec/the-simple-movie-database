@@ -5,7 +5,7 @@ import TextInput from './TextInput/TextInput';
 import SearchInputForm from './SearchInputForm';
 import MoviesList from '../../Common/MoviesList/MoviesList';
 import { findSetPagination, findSetSearchText } from '../../Flux/Actions/find';
-import { requestApi, requestClear, requestError } from '../../Flux/Actions/requests';
+import { requestApi, requestError } from '../../Flux/Actions/requests';
 import { requestsIds } from '../../Flux/Reducers/requests';
 import config from '../../config';
 
@@ -41,9 +41,6 @@ const Find = () => {
         }));
       }, config.find.fetchDelayMs);
     }
-    return () => {
-      dispatch(requestClear(requestsIds.search));
-    };
   }, [searchText, pagination.current]);
 
   const onPageChange = (pageNumber) => {

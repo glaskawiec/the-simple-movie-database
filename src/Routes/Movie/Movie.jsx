@@ -50,7 +50,7 @@ const Movie = ({ match }) => {
       dispatch(requestClear(requestsIds.details));
       dispatch(requestClear(requestsIds.credits));
     };
-  }, []);
+  }, [id]);
 
   const getGenres = (genresX = []) => genresX.map(genre => genre.name).join(', ');
 
