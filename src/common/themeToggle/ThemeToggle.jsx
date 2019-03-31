@@ -8,7 +8,7 @@ import ToggleTrack from './ToggleTrack';
 import ToggleTrackCheck from './ToggleTrackCheck';
 import MoonIcon from './MoonIcon';
 import SunIcon from './SunIcon';
-import { globalThemeChange } from '../../Flux/Actions/global';
+import { globalThemeChange } from '../../flux/actions/global';
 
 const ThemeToggle = ({ isMobile }) => {
   const [isChecked, setIsChecked] = useState(false);

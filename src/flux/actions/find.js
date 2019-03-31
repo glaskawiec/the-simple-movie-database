@@ -1,4 +1,4 @@
-import { FIND_SET_PAGINATION, FIND_SET_SEARCH_TEXT } from '../ActionTypes/find';
+import { FIND_SET_PAGINATION, FIND_SET_SEARCH_TEXT } from '../actionTypes/find';
 
 export const findSetSearchText = searchText => ({
   type: FIND_SET_SEARCH_TEXT,

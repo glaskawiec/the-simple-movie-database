@@ -1,14 +1,14 @@
 import React, { useEffect } from 'react';
 import { useHoux } from 'houx';
-import Heading from '../../Common/Heading';
-import FilterForm from './FilterForm/FilterForm';
-import MoviesList from '../../Common/MoviesList/MoviesList';
+import Heading from '../../common/Heading';
+import FilterForm from './filterForm/FilterForm';
+import MoviesList from '../../common/moviesList/MoviesList';
 import {
   discoverSetOptions,
   discoverSetPagination,
-} from '../../Flux/Actions/discover';
-import { requestApi, requestClear, requestError } from '../../Flux/Actions/requests';
-import { requestsIds } from '../../Flux/Reducers/requests';
+} from '../../flux/actions/discover';
+import { requestApi, requestClear, requestError } from '../../flux/actions/requests';
+import { requestsIds } from '../../flux/reducers/requests';
 
 const Discover = () => {
   const { state, dispatch } = useHoux();

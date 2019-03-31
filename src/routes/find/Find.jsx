@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { useHoux } from 'houx';
-import Heading from '../../Common/Heading';
-import TextInput from './TextInput/TextInput';
+import Heading from '../../common/Heading';
+import TextInput from './textInput/TextInput';
 import SearchInputForm from './SearchInputForm';
-import MoviesList from '../../Common/MoviesList/MoviesList';
-import { findSetPagination, findSetSearchText } from '../../Flux/Actions/find';
-import { requestApi, requestError } from '../../Flux/Actions/requests';
-import { requestsIds } from '../../Flux/Reducers/requests';
+import MoviesList from '../../common/moviesList/MoviesList';
+import { findSetPagination, findSetSearchText } from '../../flux/actions/find';
+import { requestApi, requestError } from '../../flux/actions/requests';
+import { requestsIds } from '../../flux/reducers/requests';
 import config from '../../config';
 
 const Find = () => {

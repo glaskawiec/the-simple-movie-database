@@ -1,4 +1,4 @@
-import { GLOBAL_THEME_CHANGE } from '../ActionTypes/global';
+import { GLOBAL_THEME_CHANGE } from '../actionTypes/global';
 
 export const initialState = {
   theme: 'light',

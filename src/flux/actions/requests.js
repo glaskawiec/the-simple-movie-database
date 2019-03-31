@@ -3,7 +3,7 @@ import {
   REQUEST_FAILURE,
   REQUEST_IS_PENDING,
   REQUEST_SUCCESS,
-} from '../ActionTypes/requests';
+} from '../actionTypes/requests';
 import requestTheMovieDbApi from '../../utils/requestTheMovieDbApi';
 
 const requestIsPending = id => ({

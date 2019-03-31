@@ -5,7 +5,7 @@ const ImageWrapper = styled.div`
     box-sizing: border-box;
     width: 100%;
     max-height: 100%;
-    border-width: 0px;
+    border-width: 0;
     border-radius: 4px;
     overflow: hidden;
     box-shadow: 0 0 4px rgba(0,0,0,0.2);
