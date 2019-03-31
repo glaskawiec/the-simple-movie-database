@@ -11,12 +11,16 @@ const LoadableImage = React.memo(({ src, onClick }) => {
 
   useEffect(() => {
     if (!src) {
-      return;
+      return () => ({});
     }
     const img = new Image();
     img.onload = () => setShowedImageSrc(src);
     img.onerror = () => setShowedImageSrc(noImageSrc);
     img.src = src;
+    return () => {
+      img.onload = null;
+      img.onerror = null;
+    };
   });
   return <LoadableImageStyled onClick={onClick} src={showedImageSrc} />;
 });
