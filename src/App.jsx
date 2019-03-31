@@ -12,7 +12,6 @@ import LoadingScreen from './Common/LoadingScreen/LoadingScreen';
 const Find = React.lazy(() => import('./Routes/Find/Find'));
 const Movie = React.lazy(() => import('./Routes/Movie/Movie'));
 
-// @TODO: Add loading screen to Suspense
 const App = () => {
   const { state } = useHoux();
   return (
