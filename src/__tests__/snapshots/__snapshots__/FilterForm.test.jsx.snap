@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Footer snapshot 1`] = `
+exports[`FilterForm snapshot 1`] = `
 <form
   className="sc-bdVaJa eTdYLS"
 >
