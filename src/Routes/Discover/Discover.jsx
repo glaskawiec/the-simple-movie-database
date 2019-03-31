@@ -7,7 +7,8 @@ import {
   discoverSetOptions,
   discoverSetPagination,
 } from '../../Flux/Actions/discover';
-import { requestApi, requestError } from '../../Flux/Actions/requests';
+import { requestApi, requestClear, requestError } from '../../Flux/Actions/requests';
+import { requestsIds } from '../../Flux/Reducers/requests';
 
 const Discover = () => {
   const { state, dispatch } = useHoux();
@@ -18,7 +19,7 @@ const Discover = () => {
   const { current, total } = pagination;
 
   useEffect(() => {
-    dispatch(requestApi('discover', {
+    dispatch(requestApi(requestsIds.discover, {
       endpoint: '/discover/movie',
       queryParameters: {
         primary_release_year: year,
@@ -29,10 +30,13 @@ const Discover = () => {
     }, (responsedData) => {
       const { errors, total_pages } = responsedData;
       if (errors) {
-        return dispatch(requestError('discover', errors));
+        return dispatch(requestError(requestsIds.discover, errors));
       }
       return dispatch(discoverSetPagination({ total: total_pages }));
     }));
+    return () => {
+      dispatch(requestClear(requestsIds.discover));
+    };
   }, [current, sort, genres, year]);
 
   const onPageChange = (pageNumber) => {

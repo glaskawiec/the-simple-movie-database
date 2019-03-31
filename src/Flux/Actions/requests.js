@@ -1,4 +1,9 @@
-import { REQUEST_FAILURE, REQUEST_IS_PENDING, REQUEST_SUCCESS } from '../ActionTypes/requests';
+import {
+  REQUEST_CLEAR,
+  REQUEST_FAILURE,
+  REQUEST_IS_PENDING,
+  REQUEST_SUCCESS,
+} from '../ActionTypes/requests';
 import requestTheMovieDbApi from '../../utils/requestTheMovieDbApi';
 
 const requestIsPending = id => ({
@@ -16,6 +21,11 @@ export const requestError = (id, error) => ({
   type: REQUEST_FAILURE,
   id,
   error,
+});
+
+export const requestClear = id => ({
+  type: REQUEST_CLEAR,
+  id,
 });
 
 export const requestApi = (id, request, afterSuccess = () => ({})) => async (dispatch) => {

@@ -1,19 +1,20 @@
 import React, { useEffect, useState } from 'react';
+import { useHoux } from 'houx';
 import Heading from '../../Common/Heading';
 import TextInput from './TextInput/TextInput';
 import SearchInputForm from './SearchInputForm';
 import MoviesList from '../../Common/MoviesList/MoviesList';
-import requestTheMovieDbApi from '../../utils/requestTheMovieDbApi';
+import { findSetPagination, findSetSearchText } from '../../Flux/Actions/find';
+import { requestApi, requestClear, requestError } from '../../Flux/Actions/requests';
+import { requestsIds } from '../../Flux/Reducers/requests';
+import config from '../../config';
 
-const fetchDelay = 500;
 
 const Find = () => {
+  const { state, dispatch } = useHoux();
+  const { searchText, pagination } = state.find;
+  const { responseData, hadError } = state.requests.search;
   const [isLoading, setIsLoading] = useState(false);
-  const [results, setResults] = useState([]);
-  const [isError, setIsError] = useState(false);
-  const [page, setPage] = useState(1);
-  const [total, setTotal] = useState(0);
-  const [searchText, setSearchText] = useState('');
 
   const isSearchBoxEmpty = searchText.length <= 0;
 
@@ -22,36 +23,32 @@ const Find = () => {
   useEffect(() => {
     if (!isSearchBoxEmpty) {
       timeout = setTimeout(() => {
-        (async () => {
-          setIsError(false);
-          setIsLoading(true);
-          try {
-            const request = {
-              endpoint: '/search/movie',
-              queryParameters: {
-                query: searchText,
-                page,
-              },
-            };
-            const response = await requestTheMovieDbApi(request);
-            const parsedResponse = await response.json();
-            if (!parsedResponse.results) {
-              setIsError(true);
-            }
-            setResults(parsedResponse.results);
-            setTotal(parsedResponse.total_pages);
-          } catch (error) {
-            setIsError(true);
-          }
+        setIsLoading(true);
+        const request = {
+          endpoint: '/search/movie',
+          queryParameters: {
+            query: searchText,
+            page: pagination.current,
+          },
+        };
+        dispatch(requestApi(requestsIds.search, request, (responsedData) => {
           setIsLoading(false);
-        })();
-      }, fetchDelay);
+          const { errors, total_pages } = responsedData;
+          if (errors) {
+            return dispatch(requestError(requestsIds.search, errors));
+          }
+          return dispatch(findSetPagination({ total: total_pages }));
+        }));
+      }, config.find.fetchDelayMs);
     }
-  }, [searchText, page]);
+    return () => {
+      dispatch(requestClear(requestsIds.search));
+    };
+  }, [searchText, pagination.current]);
 
   const onPageChange = (pageNumber) => {
     setIsLoading(true);
-    setPage(pageNumber);
+    dispatch(findSetPagination({ current: pageNumber }));
   };
 
   const onSearchInputChange = (event) => {
@@ -62,8 +59,8 @@ const Find = () => {
     } else {
       setIsLoading(false);
     }
-    setPage(1);
-    setSearchText(newValue);
+    dispatch(findSetPagination({ current: 1 }));
+    dispatch(findSetSearchText(newValue));
   };
 
   return (
@@ -80,12 +77,12 @@ const Find = () => {
         />
       </SearchInputForm>
       <MoviesList
-        totalPages={total}
+        totalPages={pagination.total}
         onPageChange={onPageChange}
-        currentPage={page}
+        currentPage={pagination.current}
         isLoading={isLoading}
-        isError={isError}
-        movies={results}
+        isError={hadError}
+        movies={responseData.results}
       />
     </>
   );

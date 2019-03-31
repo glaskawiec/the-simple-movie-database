@@ -16,7 +16,8 @@ import ReleaseDate from './ReleaseDate';
 import parseDate from '../../utils/parseDate';
 import LoadingScreen from '../../Common/LoadingScreen/LoadingScreen';
 import RouteWrapper from '../../Common/RouteWrapper';
-import { requestApi } from '../../Flux/Actions/requests';
+import { requestApi, requestClear } from '../../Flux/Actions/requests';
+import { requestsIds } from '../../Flux/Reducers/requests';
 
 const { imageServiceUrl, largeImageSizeUrl, mobileImageSizeUrl } = config;
 
@@ -36,14 +37,20 @@ const Movie = ({ match }) => {
   const { crew, cast } = state.requests.credits.responseData;
 
   useEffect(() => {
-    dispatch(requestApi('details', {
+    window.scrollTo(0, 0);
+
+    dispatch(requestApi(requestsIds.details, {
       endpoint: `/movie/${id}`,
     }));
 
-    dispatch(requestApi('credits', {
+    dispatch(requestApi(requestsIds.credits, {
       endpoint: `/movie/${id}/credits`,
     }));
-  }, [true]);
+    return () => {
+      dispatch(requestClear(requestsIds.details));
+      dispatch(requestClear(requestsIds.credits));
+    };
+  }, []);
 
   const getGenres = (genresX = []) => genresX.map(genre => genre.name).join(', ');
 

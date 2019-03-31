@@ -1,30 +1,20 @@
 import cloneObject from '../../utils/cloneObject';
 import {
+  REQUEST_CLEAR,
   REQUEST_FAILURE,
   REQUEST_IS_PENDING,
   REQUEST_SUCCESS,
 } from '../ActionTypes/requests';
+import createRequestsInitialState from '../../utils/createRequestsInitialState';
 
-export const initialState = {
-  details: {
-    isPending: false,
-    hadError: false,
-    responseData: [],
-    error: {},
-  },
-  credits: {
-    isPending: false,
-    hadError: false,
-    responseData: [],
-    error: {},
-  },
-  discover: {
-    isPending: false,
-    hadError: false,
-    responseData: [],
-    error: {},
-  },
+export const requestsIds = {
+  details: 'details',
+  credits: 'credits',
+  discover: 'discover',
+  search: 'search',
 };
+
+export const initialState = createRequestsInitialState(requestsIds);
 
 const requestsReducer = (state = initialState, action) => {
   switch (action.type) {
@@ -51,6 +41,18 @@ const requestsReducer = (state = initialState, action) => {
       const { id, error } = action;
       newState[id].hadError = true;
       newState[id].error = error;
+      return newState;
+    }
+    case REQUEST_CLEAR:
+    {
+      const newState = cloneObject(state);
+      const { id } = action;
+      newState[id] = {
+        isPending: false,
+        hadError: false,
+        responseData: [],
+        error: {},
+      };
       return newState;
     }
     default: return state;

@@ -4,6 +4,9 @@ const config = {
   imageServiceUrl: 'https://image.tmdb.org/t/p',
   largeImageSizeUrl: 'w300_and_h450_bestv2',
   profileImageSizeUrl: 'w276_and_h350_bestv2',
+  find: {
+    fetchDelayMs: 500,
+  },
 };
 
 export default config;
