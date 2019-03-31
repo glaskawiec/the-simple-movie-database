@@ -18,6 +18,7 @@ import LoadingScreen from '../../Common/LoadingScreen/LoadingScreen';
 import RouteWrapper from '../../Common/RouteWrapper';
 import { requestApi, requestClear } from '../../Flux/Actions/requests';
 import { requestsIds } from '../../Flux/Reducers/requests';
+import ErrorMessage from '../../Common/ErrorMessage/ErrorMessage';
 
 const { imageServiceUrl, largeImageSizeUrl, mobileImageSizeUrl } = config;
 
@@ -53,12 +54,6 @@ const Movie = ({ match }) => {
   }, [id]);
 
   const getGenres = (genresX = []) => genresX.map(genre => genre.name).join(', ');
-
-  const { isPending: isDetailsRequestPending } = state.requests.details;
-  const { isPending: isCreditsRequestPending } = state.requests.credits;
-
-  const isDataRequestPending = isDetailsRequestPending || isCreditsRequestPending;
-
   const releaseDate = release_date ? parseDate(release_date) : 'Unknown release date';
   const normalizedGenres = getGenres(genres);
   const featuredCrew = crew && crew.slice(0, 6);
@@ -79,9 +74,15 @@ const Movie = ({ match }) => {
     return null;
   };
 
-  // @TODO: Add error handling
-  if (isDataRequestPending && releaseDate && normalizedGenres && featuredCrew && topBilledCast) {
+  const { isPending: isDetailsRequestPending, hadError } = state.requests.details;
+  const { isPending: isCreditsRequestPending } = state.requests.credits;
+
+  if (isDetailsRequestPending || isCreditsRequestPending) {
     return <LoadingScreen />;
+  }
+
+  if (hadError) {
+    return <ErrorMessage />;
   }
 
   return (

@@ -9,15 +9,12 @@ import { requestApi, requestError } from '../../Flux/Actions/requests';
 import { requestsIds } from '../../Flux/Reducers/requests';
 import config from '../../config';
 
-
 const Find = () => {
   const { state, dispatch } = useHoux();
   const { searchText, pagination } = state.find;
   const { responseData, hadError } = state.requests.search;
   const [isLoading, setIsLoading] = useState(false);
-
   const isSearchBoxEmpty = searchText.length <= 0;
-
   let timeout;
 
   useEffect(() => {
