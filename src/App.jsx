@@ -3,14 +3,14 @@ import { BrowserRouter, Route } from 'react-router-dom';
 import { ThemeProvider } from 'styled-components';
 import { Reset } from 'styled-reset';
 import { useHoux } from 'houx';
-import Layout from './Layout/Layout';
-import GlobalStyle from './GlobalStyle';
-import Discover from './Routes/Discover/Discover';
-import Themes from './Themes';
-import LoadingScreen from './Common/LoadingScreen/LoadingScreen';
+import Layout from './layout/Layout';
+import GlobalStyle from './globalStyle';
+import Discover from './routes/discover/Discover';
+import Themes from './themes';
+import LoadingScreen from './common/loadingScreen/LoadingScreen';
 
-const Find = React.lazy(() => import('./Routes/Find/Find'));
-const Movie = React.lazy(() => import('./Routes/Movie/Movie'));
+const Find = React.lazy(() => import('./routes/find/Find'));
+const Movie = React.lazy(() => import('./routes/movie/Movie'));
 
 const App = () => {
   const { state } = useHoux();

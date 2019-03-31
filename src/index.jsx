@@ -3,10 +3,10 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { HouxProvider } from 'houx';
 import App from './App';
-import global from './Flux/Reducers/global';
-import discover from './Flux/Reducers/discover';
-import requests from './Flux/Reducers/requests';
-import find from './Flux/Reducers/find';
+import global from './flux/reducers/global';
+import discover from './flux/reducers/discover';
+import requests from './flux/reducers/requests';
+import find from './flux/reducers/find';
 
 const reducers = {
   global,

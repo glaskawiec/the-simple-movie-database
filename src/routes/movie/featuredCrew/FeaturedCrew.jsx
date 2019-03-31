@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Heading from '../../../common/Heading';
+import Heading from '../../../Common/Heading';
 import Name from './Name';
 import ProfileNoImage from './ProfileNoImage';
 import ProfilesWrapper from './ProfilesWrapper';
