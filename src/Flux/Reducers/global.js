@@ -7,9 +7,10 @@ export const initialState = {
 
 const globalReducer = (state = initialState, action) => {
   switch (action.type) {
-    case GLOBAL_THEME_CHANGE:
+    case GLOBAL_THEME_CHANGE: {
       const { theme } = action;
       return { ...state, theme };
+    }
     default: return state;
   }
 };

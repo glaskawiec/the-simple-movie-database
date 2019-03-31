@@ -19,22 +19,18 @@ import RouteWrapper from '../../Common/RouteWrapper';
 import { requestApi } from '../../Flux/Actions/requests';
 
 const { imageServiceUrl, largeImageSizeUrl, mobileImageSizeUrl } = config;
-const Movie = ({ location }) => {
-  const { id } = location;
 
-  if (!id) {
-    return null;
-  }
-
+const Movie = ({ match }) => {
+  const { id } = match.params;
   const { state, dispatch } = useHoux();
 
   const {
     poster_path,
+    release_date,
     title,
     genres,
     runtime,
     overview,
-    release_date,
   } = state.requests.details.responseData;
 
   const { crew, cast } = state.requests.credits.responseData;
@@ -47,12 +43,12 @@ const Movie = ({ location }) => {
     dispatch(requestApi('credits', {
       endpoint: `/movie/${id}/credits`,
     }));
-  }, [id]);
+  }, [true]);
 
   const getGenres = (genresX = []) => genresX.map(genre => genre.name).join(', ');
 
-  const { isPending: isDetailsRequestPending } = state.movie.details.request;
-  const { isPending: isCreditsRequestPending } = state.movie.credits.request;
+  const { isPending: isDetailsRequestPending } = state.requests.details;
+  const { isPending: isCreditsRequestPending } = state.requests.credits;
 
   const isDataRequestPending = isDetailsRequestPending || isCreditsRequestPending;
 
@@ -104,7 +100,7 @@ const Movie = ({ location }) => {
 };
 
 Movie.propTypes = {
-  location: ReactRouterPropTypes.location.isRequired,
+  match: ReactRouterPropTypes.match.isRequired,
 };
 
 export default Movie;

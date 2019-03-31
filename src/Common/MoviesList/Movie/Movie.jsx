@@ -22,7 +22,7 @@ const Movie = React.memo(({
   id,
 }) => {
   const onGetMoreInformationClick = () => {
-    history.push({ pathname: (`/movie/${slugify(title)}`), id });
+    history.push({ pathname: (`/movie/${id}/${slugify(title)}`)});
   };
 
   return (
