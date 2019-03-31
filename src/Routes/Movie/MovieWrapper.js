@@ -7,11 +7,8 @@ const MovieWrapper = styled.section`
   align-items: flex-start;
   flex-wrap: nowrap;
     
-   @media (max-width: 768px) {
+  @media (max-width: 768px) {
     flex-wrap: wrap;
-  }
-
-   @media (max-width: 576px) {
   }
 `;
 
