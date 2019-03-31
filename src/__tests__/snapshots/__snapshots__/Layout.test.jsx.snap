@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Layout snapshot 1`] = `
+exports[`layout snapshot 1`] = `
 Array [
   <div
     className="sc-bdVaJa cQKcmZ"
