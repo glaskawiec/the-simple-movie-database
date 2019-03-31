@@ -6,7 +6,7 @@ const Overlay = styled.div`
   top: 0;
   left: 0;
   width: 100%;
-  height: 0%;
+  height: 0;
   opacity: 0;
   visibility: hidden;
   transition: opacity .35s, visibility .35s, height .35s;

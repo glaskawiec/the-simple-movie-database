@@ -8,7 +8,7 @@ import HeaderWrapper from './HeaderWrapper';
 import Hamburger from './Hambruger/Hamburger';
 import MobileMenu from './MobileMenu/MobileMenu';
 import Menu from './Menu/Menu';
-import ThemeToggle from '../../Common/ThemeToggle/ThemeToggle';
+import ThemeToggle from '../../common/themeToggle/ThemeToggle';
 
 const Header = ({ history }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);

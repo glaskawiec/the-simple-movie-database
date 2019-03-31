@@ -6,12 +6,12 @@ import {
 } from '../actionTypes/requests';
 import requestTheMovieDbApi from '../../utils/requestTheMovieDbApi';
 
-const requestIsPending = id => ({
+export const requestIsPending = id => ({
   type: REQUEST_IS_PENDING,
   id,
 });
 
-const requestSuccess = (id, responseData) => ({
+export const requestSuccess = (id, responseData) => ({
   type: REQUEST_SUCCESS,
   id,
   responseData,
@@ -32,6 +32,9 @@ export const requestApi = (id, request, afterSuccess = () => ({})) => async (dis
   try {
     dispatch(requestIsPending(id));
     const response = await requestTheMovieDbApi(request);
+    if (!response.ok) {
+      return dispatch(requestError(id, response.json().error));
+    }
     const parsedResponse = await response.json();
     dispatch(requestSuccess(id, parsedResponse));
     afterSuccess(parsedResponse);
