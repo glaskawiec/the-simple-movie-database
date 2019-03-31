@@ -30,6 +30,7 @@ const Find = () => {
         };
         dispatch(requestApi(requestsIds.search, request, (responsedData) => {
           setIsLoading(false);
+          // eslint-disable-next-line camelcase
           const { errors, total_pages } = responsedData;
           if (errors) {
             return dispatch(requestError(requestsIds.search, errors));

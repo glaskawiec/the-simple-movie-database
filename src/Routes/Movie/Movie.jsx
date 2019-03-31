@@ -27,7 +27,9 @@ const Movie = ({ match }) => {
   const { state, dispatch } = useHoux();
 
   const {
+    // eslint-disable-next-line camelcase
     poster_path,
+    // eslint-disable-next-line camelcase
     release_date,
     title,
     genres,
@@ -54,6 +56,7 @@ const Movie = ({ match }) => {
   }, [id]);
 
   const getGenres = (genresX = []) => genresX.map(genre => genre.name).join(', ');
+  // eslint-disable-next-line camelcase
   const releaseDate = release_date ? parseDate(release_date) : 'Unknown release date';
   const normalizedGenres = getGenres(genres);
   const featuredCrew = crew && crew.slice(0, 6);

@@ -13,7 +13,6 @@ import { requestsIds } from '../../Flux/Reducers/requests';
 const Discover = () => {
   const { state, dispatch } = useHoux();
   const { options, pagination } = state.discover;
-  console.log(state);
   const { isPending, hadError, responseData } = state.requests.discover;
   const { year, sort, genres } = options;
   const { current, total } = pagination;
@@ -28,6 +27,7 @@ const Discover = () => {
         with_genres: genres,
       },
     }, (responsedData) => {
+      // eslint-disable-next-line camelcase
       const { errors, total_pages } = responsedData;
       if (errors) {
         return dispatch(requestError(requestsIds.discover, errors));
