@@ -36,9 +36,9 @@ const MoviesList = React.memo(({
     return null;
   };
 
-  if (isError || !movies) {
+  if (isError) {
     content = <ErrorMessage />;
-  } else if (isLoading) {
+  } else if (isLoading || !movies) {
     content = <LoadingBars />;
   } else {
     content = movies.map(movie => (

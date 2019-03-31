@@ -5,12 +5,12 @@ import { HouxProvider } from 'houx';
 import App from './App';
 import global from './Flux/Reducers/global';
 import discover from './Flux/Reducers/discover';
-import movie from './Flux/Reducers/movie';
+import requests from './Flux/Reducers/requests';
 
 const reducers = {
   global,
   discover,
-  movie,
+  requests,
 };
 
 ReactDOM.render(

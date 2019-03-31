@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react';
 import ReactRouterPropTypes from 'react-router-prop-types';
 import { useHoux } from 'houx';
-import { movieRequestCredits, movieRequestDetails } from '../../Flux/Actions/movie';
 import config from '../../config';
 import LoadableImage from '../../Common/LoadableImage/LoadableImage';
 import Title from './Title';
@@ -17,6 +16,7 @@ import ReleaseDate from './ReleaseDate';
 import parseDate from '../../utils/parseDate';
 import LoadingScreen from '../../Common/LoadingScreen/LoadingScreen';
 import RouteWrapper from '../../Common/RouteWrapper';
+import { requestApi } from '../../Flux/Actions/requests';
 
 const { imageServiceUrl, largeImageSizeUrl, mobileImageSizeUrl } = config;
 const Movie = ({ location }) => {
@@ -27,6 +27,7 @@ const Movie = ({ location }) => {
   }
 
   const { state, dispatch } = useHoux();
+
   const {
     poster_path,
     title,
@@ -34,16 +35,16 @@ const Movie = ({ location }) => {
     runtime,
     overview,
     release_date,
-  } = state.movie.details.request.responseData;
+  } = state.requests.details.responseData;
 
-  const { crew, cast } = state.movie.credits.request.responseData;
+  const { crew, cast } = state.requests.credits.responseData;
 
   useEffect(() => {
-    dispatch(movieRequestDetails({
+    dispatch(requestApi('details', {
       endpoint: `/movie/${id}`,
     }));
 
-    dispatch(movieRequestCredits({
+    dispatch(requestApi('credits', {
       endpoint: `/movie/${id}/credits`,
     }));
   }, [id]);
