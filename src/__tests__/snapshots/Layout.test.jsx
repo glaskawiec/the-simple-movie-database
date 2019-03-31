@@ -17,7 +17,7 @@ const reducers = {
   requests,
 };
 
-test('Layout snapshot', () => {
+test('layout snapshot', () => {
   const tree = renderer
     .create(
       <MemoryRouter initialEntries={[{ pathname: '/', key: 'testKey' }]}>
