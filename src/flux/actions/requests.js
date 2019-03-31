@@ -1,6 +1,6 @@
 import {
   REQUEST_CLEAR,
-  REQUEST_FAILURE,
+  REQUEST_ERROR,
   REQUEST_IS_PENDING,
   REQUEST_SUCCESS,
 } from '../actionTypes/requests';
@@ -18,7 +18,7 @@ export const requestSuccess = (id, responseData) => ({
 });
 
 export const requestError = (id, error) => ({
-  type: REQUEST_FAILURE,
+  type: REQUEST_ERROR,
   id,
   error,
 });
@@ -37,8 +37,8 @@ export const requestApi = (id, request, afterSuccess = () => ({})) => async (dis
     }
     const parsedResponse = await response.json();
     dispatch(requestSuccess(id, parsedResponse));
-    afterSuccess(parsedResponse);
+    return afterSuccess(parsedResponse);
   } catch (error) {
-    dispatch(requestError(id, error));
+    return dispatch(requestError(id, error));
   }
 };

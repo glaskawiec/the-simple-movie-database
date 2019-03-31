@@ -3,7 +3,7 @@ import reduxThunk from 'redux-thunk';
 import { fetchMock } from 'fetch-mock';
 import {
   REQUEST_CLEAR,
-  REQUEST_FAILURE,
+  REQUEST_ERROR,
   REQUEST_IS_PENDING,
   REQUEST_SUCCESS,
 } from '../../../flux/actionTypes/requests';
@@ -36,9 +36,9 @@ describe('Requests actions', () => {
     expect(requestSuccess('0', { a: 1 })).toEqual(expectedAction);
   });
 
-  it('should create REQUEST_FAILURE action properly', () => {
+  it('should create REQUEST_ERROR action properly', () => {
     const expectedAction = {
-      type: REQUEST_FAILURE,
+      type: REQUEST_ERROR,
       id: '0',
       error: 'error',
     };
@@ -83,12 +83,12 @@ describe('Request async actions', () => {
       });
   });
 
-  it('creates REQUEST_FAILURE when fetching has been failed', () => {
+  it('creates REQUEST_ERROR when fetching has been failed', () => {
     const store = mockStore({});
     const id = 'asyncActionUnitTest';
     const expectedActions = [
       { type: REQUEST_IS_PENDING, id },
-      { type: REQUEST_FAILURE, id, error: undefined },
+      { type: REQUEST_ERROR, id, error: undefined },
     ];
 
     const request = {

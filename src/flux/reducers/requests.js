@@ -1,7 +1,7 @@
 import cloneObject from '../../utils/cloneObject';
 import {
   REQUEST_CLEAR,
-  REQUEST_FAILURE,
+  REQUEST_ERROR,
   REQUEST_IS_PENDING,
   REQUEST_SUCCESS,
 } from '../actionTypes/requests';
@@ -35,7 +35,7 @@ const requestsReducer = (state = initialState, action) => {
       newState[id].isPending = false;
       return newState;
     }
-    case REQUEST_FAILURE:
+    case REQUEST_ERROR:
     {
       const newState = cloneObject(state);
       const { id, error } = action;
