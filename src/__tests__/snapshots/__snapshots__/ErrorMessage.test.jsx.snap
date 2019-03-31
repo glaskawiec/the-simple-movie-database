@@ -1,0 +1,23 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ErrorMessage snapshot 1`] = `
+<div
+  className="sc-htpNat hFCDdZ"
+>
+  <div
+    className="sc-bwzfXH ilocbC"
+  >
+    ⚠
+  </div>
+  <div
+    className="sc-bdVaJa dAIgSr"
+  >
+    Sorry, something went wrong.
+  </div>
+  <div
+    className="sc-bdVaJa dAIgSr"
+  >
+    Please try again leter.
+  </div>
+</div>
+`;

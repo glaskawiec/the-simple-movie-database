@@ -1,0 +1,19 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Footer snapshot 1`] = `
+<div
+  className="sc-htpNat fgrEkI"
+>
+  <label
+    className="sc-bdVaJa fxuKrb"
+  >
+    snap
+  </label>
+  <input
+    className="sc-bwzfXH lbjMp"
+    onChange={[MockFunction]}
+    placeholder="snap"
+    value="snap"
+  />
+</div>
+`;

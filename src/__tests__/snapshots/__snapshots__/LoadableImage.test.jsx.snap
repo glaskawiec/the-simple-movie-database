@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`LoadableImage snapshot 1`] = `
+<img
+  className="sc-bdVaJa jCoEWt"
+  onClick={null}
+  src="no-image-desktop.svg"
+/>
+`;

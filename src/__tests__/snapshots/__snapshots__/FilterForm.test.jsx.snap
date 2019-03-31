@@ -1,0 +1,158 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Footer snapshot 1`] = `
+<form
+  className="sc-bdVaJa eTdYLS"
+>
+  <div
+    className="sc-bxivhb iQLHnd"
+  >
+    <label
+      className="sc-htpNat kVGrHg"
+    >
+      Sort By
+    </label>
+    <select
+      className="sc-bwzfXH SuPFK"
+      onChange={[MockFunction]}
+      value="snap"
+    >
+      <option
+        value="popularity.desc"
+      >
+        Popularity Descending
+      </option>
+      <option
+        value="popularity.asc"
+      >
+        Popularity Ascending
+      </option>
+      <option
+        value="release_date.asc"
+      >
+        Release Date Ascending
+      </option>
+      <option
+        value="release_date.desc"
+      >
+        Release Date Descending
+      </option>
+      <option
+        value="vote_average.asc"
+      >
+        Rating Ascending
+      </option>
+      <option
+        value="vote_average.desc"
+      >
+        Rating Descending
+      </option>
+    </select>
+  </div>
+  <div
+    className="sc-bxivhb iQLHnd"
+  >
+    <label
+      className="sc-htpNat kVGrHg"
+    >
+      Year
+    </label>
+    <select
+      className="sc-bwzfXH SuPFK"
+      onChange={[MockFunction]}
+      value="snap"
+    >
+      <option
+        value=""
+      >
+        All
+      </option>
+      <option
+        value="2019"
+      >
+        2019
+      </option>
+      <option
+        value="2018"
+      >
+        2018
+      </option>
+      <option
+        value="2017"
+      >
+        2017
+      </option>
+      <option
+        value="2016"
+      >
+        2016
+      </option>
+      <option
+        value="2015"
+      >
+        2015
+      </option>
+    </select>
+  </div>
+  <div
+    className="sc-bxivhb iQLHnd"
+  >
+    <label
+      className="sc-htpNat kVGrHg"
+    >
+      Genres
+    </label>
+    <select
+      className="sc-bwzfXH SuPFK"
+      onChange={[MockFunction]}
+      value="snap"
+    >
+      <option
+        value=""
+      >
+        All
+      </option>
+      <option
+        value="28"
+      >
+        Action
+      </option>
+      <option
+        value="16"
+      >
+        Animation
+      </option>
+      <option
+        value="12"
+      >
+        Adventure
+      </option>
+      <option
+        value="35"
+      >
+        Comedy
+      </option>
+      <option
+        value="80"
+      >
+        Crime
+      </option>
+      <option
+        value="99"
+      >
+        Documentary
+      </option>
+      <option
+        value="18"
+      >
+        Drama
+      </option>
+      <option
+        value="27"
+      >
+        Horror
+      </option>
+    </select>
+  </div>
+</form>
+`;

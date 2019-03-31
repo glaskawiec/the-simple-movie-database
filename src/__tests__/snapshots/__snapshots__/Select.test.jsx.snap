@@ -1,0 +1,24 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Select snapshot 1`] = `
+<div
+  className="sc-htpNat jVdIDM"
+>
+  <label
+    className="sc-bwzfXH gWEriG"
+  >
+    snap
+  </label>
+  <select
+    className="sc-bdVaJa jVkQAe"
+    onChange={[MockFunction]}
+    value="snap"
+  >
+    <option
+      value="snap"
+    >
+      snap
+    </option>
+  </select>
+</div>
+`;

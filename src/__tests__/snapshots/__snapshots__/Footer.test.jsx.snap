@@ -1,0 +1,18 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Footer snapshot 1`] = `
+<footer
+  className="sc-bdVaJa jYspwc"
+>
+  <div
+    className="sc-htpNat bzegzi"
+  >
+    tsmdb
+  </div>
+  <div
+    className="sc-bwzfXH eygQfQ"
+  >
+    © 2019 by Gilbert Łaskawiec.
+  </div>
+</footer>
+`;
