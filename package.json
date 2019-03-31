@@ -32,6 +32,7 @@
     "not op_mini all"
   ],
   "devDependencies": {
+    "chai": "^4.2.0",
     "eslint-config-airbnb": "^17.1.0",
     "eslint-plugin-standard": "^4.0.0",
     "fetch-mock": "^7.3.1",
