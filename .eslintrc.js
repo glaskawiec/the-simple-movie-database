@@ -13,7 +13,6 @@ module.exports = {
     plugins: [
         "standard",
         "react",
-        "react-hooks"
     ],
     extends: [
         "eslint:recommended",
@@ -26,7 +25,5 @@ module.exports = {
         "no-var": "error",
         "no-unused-vars": "warn",
         "semi": ["error", "always"],
-        "react-hooks/rules-of-hooks": "error",
-        "react-hooks/exhaustive-deps": "warn"
     },
 };
