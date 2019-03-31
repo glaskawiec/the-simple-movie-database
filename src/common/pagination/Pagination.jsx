@@ -46,7 +46,6 @@ const Pagination = ({ total, current, onPageChange }) => {
           </PageNumber>
         ))}
         {current < total ? <Button onClick={() => onPageChange(current + 1)}>Next →</Button> : null}
-
       </PaginationStyled>
     </PaginationWrapper>
   );

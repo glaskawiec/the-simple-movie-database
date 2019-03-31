@@ -2,7 +2,7 @@ import React from 'react';
 import renderer from 'react-test-renderer';
 import { ThemeProvider } from 'styled-components';
 import themes from '../../themes';
-import Select from '../../routes/discover/filterForm/Select/Select';
+import Select from '../../common/select/Select';
 
 test('Select snapshot', () => {
   const tree = renderer

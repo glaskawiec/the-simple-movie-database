@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Label from '../../discover/filterForm/Select/Label';
+import Label from '../select/Label';
 import InputStyled from './InputStyled';
 import TextInputWrapper from './TextInputWrapper';
 

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useHoux } from 'houx';
 import Heading from '../../common/Heading';
-import TextInput from './textInput/TextInput';
+import TextInput from '../../common/textInput/TextInput';
 import SearchInputForm from './SearchInputForm';
 import MoviesList from '../../common/moviesList/MoviesList';
 import { findSetPagination, findSetSearchText } from '../../flux/actions/find';

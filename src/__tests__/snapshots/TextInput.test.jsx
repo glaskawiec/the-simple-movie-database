@@ -2,7 +2,7 @@ import React from 'react';
 import renderer from 'react-test-renderer';
 import { ThemeProvider } from 'styled-components';
 import themes from '../../themes';
-import TextInput from '../../routes/find/textInput/TextInput';
+import TextInput from '../../common/textInput/TextInput';
 
 test('TextInput snapshot', () => {
   const tree = renderer

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import MoviesListWrapper from './MoviesListWrapper';
 import Pagination from '../pagination/Pagination';
 import LoadingBars from '../loadingBars/LoadingBars';
-import Movie from './Movie/Movie';
+import Movie from './movie/Movie';
 import ErrorMessage from '../errorMessage/ErrorMessage';
 import config from '../../config';
 import parseDate from '../../utils/parseDate';

@@ -3,11 +3,11 @@ import ReactRouterPropTypes from 'react-router-prop-types';
 import { withRouter } from 'react-router-dom';
 import { useHoux } from 'houx';
 import HeaderStyled from './HeaderStyled';
-import Logo from './Logo/Logo';
+import Logo from './logo/Logo';
 import HeaderWrapper from './HeaderWrapper';
-import Hamburger from './Hambruger/Hamburger';
-import MobileMenu from './MobileMenu/MobileMenu';
-import Menu from './Menu/Menu';
+import Hamburger from './hambruger/Hamburger';
+import MobileMenu from './mobileMenu/MobileMenu';
+import Menu from './menu/Menu';
 import ThemeToggle from '../../common/themeToggle/ThemeToggle';
 
 const Header = ({ history }) => {
