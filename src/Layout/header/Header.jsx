@@ -10,7 +10,7 @@ import MobileMenu from './MobileMenu/MobileMenu';
 import Menu from './Menu/Menu';
 import ThemeToggle from '../../common/themeToggle/ThemeToggle';
 
-const Header = ({ history, location }) => {
+const Header = ({ history }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const isMobile = window.innerWidth <= 576;
   const { state } = useHoux();
@@ -31,7 +31,6 @@ const Header = ({ history, location }) => {
               isDarkTheme={isDarkTheme}
               isMenuOpen={isMenuOpen}
               setIsMenuOpen={setIsMenuOpen}
-              location={location}
               history={history}
             />
             <Logo
@@ -54,7 +53,6 @@ const Header = ({ history, location }) => {
 
 Header.propTypes = {
   history: ReactRouterPropTypes.history.isRequired,
-  location: ReactRouterPropTypes.location.isRequired,
 };
 
 export default withRouter(Header);
