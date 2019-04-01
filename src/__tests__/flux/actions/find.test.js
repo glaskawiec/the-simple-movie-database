@@ -9,7 +9,6 @@ import {
   findSetSearchText,
 } from '../../../flux/actions/find';
 
-
 describe('Discover actions', () => {
   it('should create FIND_SET_SEARCH_TEXT action properly', () => {
     const expectedAction = {

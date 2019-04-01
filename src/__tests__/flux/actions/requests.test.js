@@ -70,7 +70,6 @@ describe('Request async actions', () => {
       { type: REQUEST_SUCCESS, id, responseData: sampleResponse },
     ];
 
-
     const request = {
       endpoint: '/asyncActionUnitTest',
     };
