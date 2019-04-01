@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import ReactRouterPropTypes from 'react-router-prop-types';
 import { withRouter } from 'react-router-dom';
@@ -13,12 +13,7 @@ const Hamburger = ({
   location,
   history,
 }) => {
-  const [showCross, setShowCross] = useState(false);
   const showArrow = location.pathname.includes('/movie/');
-
-  useEffect(() => {
-    setShowCross(isMenuOpen);
-  }, [isMenuOpen]);
 
   const onClick = () => {
     if (showArrow) {
@@ -36,7 +31,7 @@ const Hamburger = ({
       <HamburgerBox>
         <HamburgerInner
           isDarkTheme={isDarkTheme}
-          showCross={showCross}
+          showCross={isMenuOpen}
           showArrow={showArrow}
         />
       </HamburgerBox>
@@ -52,4 +47,5 @@ Hamburger.propTypes = {
   history: ReactRouterPropTypes.history.isRequired,
 };
 
+export { Hamburger as PureHamburger };
 export default withRouter(Hamburger);

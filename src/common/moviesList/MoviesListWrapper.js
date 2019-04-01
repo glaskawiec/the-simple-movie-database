@@ -7,7 +7,7 @@ const MoviesListWrapper = styled.div`
   display: flex;   
   flex-wrap: wrap;
   min-height: calc(100vh - 6em - 4em - 4em - 6em - 4em);      
-  justify-content: ${props => (props.isLoading || props.isError || props.noData ? 'center' : 'space-between')};
+  justify-content: ${props => (props.centerContent ? 'center' : 'space-between')};
   align-items: center;
   
   @media (max-width: 768px) {

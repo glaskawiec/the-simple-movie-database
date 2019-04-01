@@ -33,6 +33,7 @@ const moviesListModel = {
         key: 'overview',
         type: 'string',
         default: '',
+        transform: value => (value.length > 150 ? `${value.substring(0, 150)}...` : value),
       },
     },
   },
