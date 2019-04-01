@@ -8,6 +8,7 @@ import GlobalStyle from './globalStyle';
 import Discover from './routes/discover/Discover';
 import Themes from './themes';
 import LoadingScreen from './common/loadingScreen/LoadingScreen';
+import NotFound from "./common/notFound/NotFound";
 
 const Find = React.lazy(() => import('./routes/find/Find'));
 const Movie = React.lazy(() => import('./routes/movie/Movie'));
@@ -26,6 +27,7 @@ const App = () => {
               <Route path="/find" exact component={Find} />
               <Route path="/movie/:id/:title" exact component={Movie} />
             </Suspense>
+            <Route path="*" component={NotFound}/>
           </Layout>
         </>
       </ThemeProvider>
