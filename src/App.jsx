@@ -1,5 +1,5 @@
 import React, { Suspense } from 'react';
-import { BrowserRouter, Route } from 'react-router-dom';
+import {BrowserRouter, Route, Switch} from 'react-router-dom';
 import { ThemeProvider } from 'styled-components';
 import { Reset } from 'styled-reset';
 import { useHoux } from 'houx';
@@ -22,12 +22,14 @@ const App = () => {
           <Reset />
           <GlobalStyle />
           <Layout>
+            <Switch>
             <Route path="/" exact component={Discover} />
             <Suspense fallback={<LoadingScreen />}>
               <Route path="/find" exact component={Find} />
               <Route path="/movie/:id/:title" exact component={Movie} />
             </Suspense>
             <Route path="*" component={NotFound}/>
+            </Switch>
           </Layout>
         </>
       </ThemeProvider>
