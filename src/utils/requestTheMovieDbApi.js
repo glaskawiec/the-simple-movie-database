@@ -1,6 +1,7 @@
 import apiKey from '../apiKey';
+import config from '../config';
 
-const apiUrl = 'https://api.themoviedb.org/3';
+const { apiUrl } = config;
 
 const parseQueryParameters = (queryParameters = {}) => {
   let parsedQueryParameters = '';
