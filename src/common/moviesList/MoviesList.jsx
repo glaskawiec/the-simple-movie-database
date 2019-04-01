@@ -36,7 +36,7 @@ const MoviesList = React.memo(({
     return null;
   };
 
-  //@TODO: Add no results information, refactor component
+  // @TODO: Add no results information, refactor component
 
   if (isError) {
     content = <ErrorMessage />;

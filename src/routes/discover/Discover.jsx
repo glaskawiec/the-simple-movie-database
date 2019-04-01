@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { useHoux } from 'houx';
 import Heading from '../../common/Heading';
 import FilterForm from './filterForm/FilterForm';
@@ -7,36 +7,39 @@ import {
   discoverSetOptions,
   discoverSetPagination,
 } from '../../flux/actions/discover';
-import { requestApi, requestClear, requestError } from '../../flux/actions/requests';
+import { requestApi, requestError } from '../../flux/actions/requests';
 import { requestsIds } from '../../flux/reducers/requests';
+import isEmptyObj from '../../utils/isEmptyObj';
 
 const Discover = () => {
   const { state, dispatch } = useHoux();
+  const didMount = useRef(false);
   const { options, pagination } = state.discover;
   const { isPending, hadError, responseData } = state.requests.discover;
   const { year, sort, genres } = options;
   const { current, total } = pagination;
 
   useEffect(() => {
-    dispatch(requestApi(requestsIds.discover, {
-      endpoint: '/discover/movie',
-      queryParameters: {
-        primary_release_year: year,
-        sort_by: sort,
-        page: pagination.current,
-        with_genres: genres,
-      },
-    }, (responsedData) => {
-      // eslint-disable-next-line camelcase
-      const { errors, total_pages } = responsedData;
-      if (errors) {
-        return dispatch(requestError(requestsIds.discover, errors));
-      }
-      return dispatch(discoverSetPagination({ total: total_pages }));
-    }));
-    return () => {
-      dispatch(requestClear(requestsIds.discover));
-    };
+    if (didMount.current || isEmptyObj(responseData)) {
+      dispatch(requestApi(requestsIds.discover, {
+        endpoint: '/discover/movie',
+        queryParameters: {
+          primary_release_year: year,
+          sort_by: sort,
+          page: pagination.current,
+          with_genres: genres,
+        },
+      }, (responsedData) => {
+        // eslint-disable-next-line camelcase
+        const { errors, total_pages } = responsedData;
+        if (errors) {
+          return dispatch(requestError(requestsIds.discover, errors));
+        }
+        return dispatch(discoverSetPagination({ total: total_pages }));
+      }));
+    }
+
+    didMount.current = true;
   }, [current, sort, genres, year]);
 
   const onPageChange = (pageNumber) => {

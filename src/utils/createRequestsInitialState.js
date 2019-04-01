@@ -4,7 +4,7 @@ function createRequestsInitialState(requestsIds = {}) {
     initialState[requestId] = {
       isPending: false,
       hadError: false,
-      responseData: [],
+      responseData: {},
       error: {},
     };
   }));

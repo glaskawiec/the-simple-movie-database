@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { useHoux } from 'houx';
 import Heading from '../../common/Heading';
 import TextInput from '../../common/textInput/TextInput';
@@ -15,10 +15,11 @@ const Find = () => {
   const { responseData, hadError } = state.requests.search;
   const [isLoading, setIsLoading] = useState(false);
   const isSearchBoxEmpty = searchText.length <= 0;
+  const didMount = useRef(false);
   let timeout;
 
   useEffect(() => {
-    if (!isSearchBoxEmpty) {
+    if (!isSearchBoxEmpty && didMount.current) {
       timeout = setTimeout(() => {
         setIsLoading(true);
         const request = {
@@ -39,6 +40,8 @@ const Find = () => {
         }));
       }, config.find.fetchDelayMs);
     }
+
+    didMount.current = true;
   }, [searchText, pagination.current]);
 
   const onPageChange = (pageNumber) => {
