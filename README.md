@@ -18,8 +18,9 @@ The user should be able to enter some text into a search field, see and browser 
 * Lazy loaded routes
 * Performance optimized
 * Locally hosted fonts
-* Components snapshots
-* Typechecking with PropTypes
+* React components snapshots with Jest
+* React components typechecking with propTypes
+* Data models with typechecking (Response data)
 
 ## :pencil: Prerequisites
 *  [Git](https://git-scm.com) installed
