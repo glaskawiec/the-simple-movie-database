@@ -38,13 +38,16 @@ const Find = () => {
             return dispatch(requestError(requestsIds.search, errors));
           }
 
-          const { movies: newMovies, totalPages } = jsonToModel(rawData, moviesListModel);
-          dispatch(findSetMovies(newMovies));
-
-          const newPagination = {
-            total: totalPages,
-          };
-          return dispatch(findSetPagination(newPagination));
+          try {
+            const { movies: newMovies, totalPages } = jsonToModel(rawData, moviesListModel);
+            dispatch(findSetMovies(newMovies));
+            const newPagination = {
+              total: totalPages,
+            };
+            return dispatch(findSetPagination(newPagination));
+          } catch (error) {
+            return dispatch(requestError(requestsIds.search, error));
+          }
         }));
       }, config.find.fetchDelayMs);
     }

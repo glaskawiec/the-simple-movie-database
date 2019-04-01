@@ -15,7 +15,7 @@ import FeaturedCrew from './featuredCrew/FeaturedCrew';
 import ReleaseDate from './ReleaseDate';
 import LoadingScreen from '../../common/loadingScreen/LoadingScreen';
 import RouteWrapper from '../../common/RouteWrapper';
-import { requestApi, requestClear } from '../../flux/actions/requests';
+import { requestApi, requestClear, requestError } from '../../flux/actions/requests';
 import { requestsIds } from '../../flux/reducers/requests';
 import ErrorMessage from '../../common/errorMessage/ErrorMessage';
 import jsonToModel from '../../utils/jsonToModel';
@@ -48,13 +48,21 @@ const Movie = ({ match }) => {
     dispatch(requestApi(requestsIds.details, {
       endpoint: `/movie/${id}`,
     }, (rawData) => {
-      setDetailsData(jsonToModel(rawData, movieDetailsModel));
+      try {
+        setDetailsData(jsonToModel(rawData, movieDetailsModel));
+      } catch (error) {
+        dispatch(requestError(requestsIds.details, error));
+      }
     }));
 
     dispatch(requestApi(requestsIds.credits, {
       endpoint: `/movie/${id}/credits`,
     }, (rawData) => {
-      setCreditsData(jsonToModel(rawData, movieCreditsModel));
+      try {
+        setCreditsData(jsonToModel(rawData, movieCreditsModel));
+      } catch (error) {
+        dispatch(requestError(requestsIds.credits, error));
+      }
     }));
     return () => {
       dispatch(requestClear(requestsIds.details));
