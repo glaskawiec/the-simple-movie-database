@@ -25,7 +25,6 @@ test('layout snapshot', () => {
           <ThemeProvider theme={themes.light}>
             <Layout>
               <div />
-              <div />
             </Layout>
           </ThemeProvider>
         </HouxProvider>
