@@ -1,11 +1,11 @@
 import styled from 'styled-components';
 
 const Button = styled.span`
-&:hover{
-color: ${props => props.theme.colors.primary};
-}
-
-cursor: pointer;
+  cursor: pointer;
+  
+  &:hover{
+    color: ${props => props.theme.colors.primary};
+  }
 `;
 
 export default Button;

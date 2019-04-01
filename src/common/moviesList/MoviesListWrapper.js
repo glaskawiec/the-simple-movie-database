@@ -11,11 +11,11 @@ const MoviesListWrapper = styled.div`
   align-items: center;
   
   @media (max-width: 768px) {
-      justify-content: center;
+    justify-content: center;
   }
   
   @media (max-width: 576px) {
-   min-height: calc(100vh - 6em - 4em - 4em - 4em - 4em);   
+    min-height: calc(100vh - 6em - 4em - 4em - 4em - 4em);   
   }
 `;
 

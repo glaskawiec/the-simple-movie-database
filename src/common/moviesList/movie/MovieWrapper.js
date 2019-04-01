@@ -16,13 +16,13 @@ const MovieWrapper = styled.div`
     margin-bottom: 0;
   }
 
-   @media (max-width: 768px) {
-      width: 100%;
-   }
+  @media (max-width: 768px) {
+    width: 100%;
+  }
   
-   @media (max-width: 576px) {
-      width: 100%;
-   }
+  @media (max-width: 576px) {
+    width: 100%;
+  }
 `;
 
 export default MovieWrapper;

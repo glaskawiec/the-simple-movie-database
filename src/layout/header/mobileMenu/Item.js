@@ -11,15 +11,13 @@ const Item = styled.li`
   max-width: 80vw;
   
   font-family: 'Fjalla One',serif;
-    font-style: normal;
-    font-weight: 300;
-    text-transform: uppercase;
-    
- 
-  
-    &:hover{
+  font-style: normal;
+  font-weight: 300;
+  text-transform: uppercase;
+   
+  &:hover{
     color: ${props => props.theme.colors.primary};
-    }
+  }
 `;
 
 export default Item;

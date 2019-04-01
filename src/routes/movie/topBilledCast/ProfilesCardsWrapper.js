@@ -16,7 +16,6 @@ const ProfilesCardsWrapper = styled.ol`
     justify-content: center;
     align-items: center;
   }
-  
 `;
 
 export default ProfilesCardsWrapper;

@@ -8,7 +8,7 @@ const PaginationWrapper = styled.div`
   justify-content: center;
   align-content: center;
   
-    @media (max-width: 576px) {
+  @media (max-width: 576px) {
     display: flex;
     justify-content: center;
     align-items: flex-start;

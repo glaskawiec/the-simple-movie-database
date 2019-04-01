@@ -1,24 +1,24 @@
 import styled from 'styled-components';
 
 const HamburgerInner = styled.div`
+  display: block;
+  top: 50%;
+  margin-top: -1px;
+  
+  &::before, &::after {
+    content: "";
     display: block;
-    top: 50%;
-    margin-top: -1px;
-
-    &::before, &::after {
-      content: "";
-      display: block;
-    }
+  }
     
-    &::before {
-        top: -6px;
-    }
+  &::before {
+    top: -6px;
+  }
 
-    &::after {
-      bottom: -6px;
-    }
+  &::after {
+    bottom: -6px;
+  }
     
-    &, &::before, &::after {
+  &, &::before, &::after {
     width: 25px;
     height: 2px;
     background-color: ${props => (props.isDarkTheme && props.showCross ? '#000000' : '#FFFFFF')};
@@ -28,27 +28,26 @@ const HamburgerInner = styled.div`
     transition-property: transform, -webkit-transform;
     transition-duration: 0.15s;
     transition-timing-function: ease;
-    }
+  }
     
-    ${props => (props.showArrow ? `
-    &::before {
+  ${props => (props.showArrow ? `
+  &::before {
       -webkit-transform: translate3d(8px, 0, 0) rotate(45deg) scale(0.7, 1);
       transform: translate3d(8px, 0, 0) rotate(45deg) scale(0.7, 1);
-    }
+  }
 
-     &::after {
+   &::after {
       -webkit-transform: translate3d(8px, 0, 0) rotate(-45deg) scale(0.7, 1);
       transform: translate3d(8px, 0, 0) rotate(-45deg) scale(0.7, 1);
-    }
+   }
     
-    & {
+   & {
       -webkit-transform: rotate(-180deg);
       transform: rotate(-180deg);
-    }`
-    : '')
+   }` : '')
 }    
     
-        ${props => (props.showCross ? `
+    ${props => (props.showCross ? `
     &::before {
           top: 0;
     transition: top .1s ease-out,opacity .1s ease-out .12s;
