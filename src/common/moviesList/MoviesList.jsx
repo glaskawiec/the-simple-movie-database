@@ -6,7 +6,6 @@ import LoadingBars from '../loadingBars/LoadingBars';
 import Movie from './movie/Movie';
 import ErrorMessage from '../errorMessage/ErrorMessage';
 import config from '../../config';
-import parseDate from '../../utils/parseDate';
 import Heading from '../Heading';
 
 const { imageServiceUrl, mobileImageSizeUrl, desktopImageSizeUrl } = config;
@@ -121,9 +120,9 @@ const MoviesList = React.memo(({
           <Movie
             key={movie.id}
             id={movie.id}
-            posterSrc={getPosterSource(movie.poster_path)}
-            description={formatDescription(movie.overview)}
-            metaInformation={parseDate(movie.release_date)}
+            posterSrc={getPosterSource(movie.posterPath)}
+            description={formatDescription(movie.description)}
+            metaInformation={movie.releaseDate}
             title={movie.title}
           />
         ))}

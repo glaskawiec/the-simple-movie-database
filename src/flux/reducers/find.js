@@ -1,10 +1,12 @@
 import cloneObject from '../../utils/cloneObject';
 import {
+  FIND_SET_MOVIES,
   FIND_SET_PAGINATION,
   FIND_SET_SEARCH_TEXT,
 } from '../actionTypes/find';
 
 export const initialState = {
+  movies: null,
   searchText: '',
   pagination: {
     current: 1,
@@ -24,6 +26,12 @@ const findReducer = (state = initialState, action) => {
       const { pagination } = action;
       const newState = cloneObject(state);
       newState.pagination = { ...newState.pagination, ...pagination };
+      return newState;
+    }
+    case FIND_SET_MOVIES: {
+      const { movies } = action;
+      const newState = cloneObject(state);
+      newState.movies = movies;
       return newState;
     }
     default: return state;

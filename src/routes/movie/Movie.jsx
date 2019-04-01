@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import ReactRouterPropTypes from 'react-router-prop-types';
 import { useHoux } from 'houx';
 import config from '../../config';
@@ -13,61 +13,54 @@ import Description from './Description';
 import TopBilledCast from './topBilledCast/TopBilledCast';
 import FeaturedCrew from './featuredCrew/FeaturedCrew';
 import ReleaseDate from './ReleaseDate';
-import parseDate from '../../utils/parseDate';
 import LoadingScreen from '../../common/loadingScreen/LoadingScreen';
 import RouteWrapper from '../../common/RouteWrapper';
 import { requestApi, requestClear } from '../../flux/actions/requests';
 import { requestsIds } from '../../flux/reducers/requests';
 import ErrorMessage from '../../common/errorMessage/ErrorMessage';
+import jsonToModel from '../../utils/jsonToModel';
+import movieDetailsModel from '../../models/movieDetails';
+import movieCreditsModel from '../../models/movieCredits';
 
 const { imageServiceUrl, largeImageSizeUrl, mobileImageSizeUrl } = config;
 
 const Movie = ({ match }) => {
   const { id } = match.params;
   const { state, dispatch } = useHoux();
-
-  const {
-    // eslint-disable-next-line camelcase
-    poster_path,
-    // eslint-disable-next-line camelcase
-    release_date,
-    title,
-    genres,
-    runtime,
-    overview,
-  } = state.requests.details.responseData;
-
-  const { crew, cast } = state.requests.credits.responseData;
+  const [detailsData, setDetailsData] = useState(
+    {
+      title: '',
+      releaseDate: '',
+      genres: '',
+      runtime: '',
+      description: '',
+      posterPath: null,
+    },
+  );
+  const [creditsData, setCreditsData] = useState({
+    crew: [],
+    cast: [],
+  });
 
   useEffect(() => {
     window.scrollTo(0, 0);
 
     dispatch(requestApi(requestsIds.details, {
       endpoint: `/movie/${id}`,
+    }, (rawData) => {
+      setDetailsData(jsonToModel(rawData, movieDetailsModel));
     }));
 
     dispatch(requestApi(requestsIds.credits, {
       endpoint: `/movie/${id}/credits`,
+    }, (rawData) => {
+      setCreditsData(jsonToModel(rawData, movieCreditsModel));
     }));
     return () => {
       dispatch(requestClear(requestsIds.details));
       dispatch(requestClear(requestsIds.credits));
     };
   }, [id]);
-
-  const getGenres = (genresX = []) => genresX.map(genre => genre.name).join(', ');
-  // eslint-disable-next-line camelcase
-  const releaseDate = release_date ? parseDate(release_date) : 'Unknown release date';
-  const normalizedGenres = getGenres(genres);
-  const featuredCrew = crew && crew.slice(0, 6);
-  const topBilledCast = cast && cast.slice(0, 6);
-  const getRuntime = (runTime) => {
-    if (runTime) {
-      return `${runtime} min`;
-    }
-
-    return 'unknown runtime';
-  };
 
   const getPosterSource = (posterPath) => {
     const isMobile = window.innerWidth <= 768;
@@ -93,19 +86,19 @@ const Movie = ({ match }) => {
       <MovieWrapper>
         <ImageWrapper>
           <LoadableImage
-            src={getPosterSource(poster_path)}
+            src={getPosterSource(detailsData.posterPath)}
           />
         </ImageWrapper>
         <ContentWrapper>
-          <Title>{title}</Title>
-          <ReleaseDate>{releaseDate}</ReleaseDate>
-          <Genres>{normalizedGenres}</Genres>
-          <Runtime>{getRuntime(runtime)}</Runtime>
-          <Description>{overview}</Description>
+          <Title>{detailsData.title}</Title>
+          <ReleaseDate>{detailsData.releaseDate}</ReleaseDate>
+          <Genres>{detailsData.genres}</Genres>
+          <Runtime>{detailsData.runtime}</Runtime>
+          <Description>{detailsData.description}</Description>
         </ContentWrapper>
       </MovieWrapper>
-      <FeaturedCrew data={featuredCrew} />
-      <TopBilledCast data={topBilledCast} />
+      <FeaturedCrew data={creditsData.crew} />
+      <TopBilledCast data={creditsData.cast} />
     </RouteWrapper>
   );
 };

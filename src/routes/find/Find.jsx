@@ -4,22 +4,24 @@ import Heading from '../../common/Heading';
 import TextInput from '../../common/textInput/TextInput';
 import SearchInputForm from './SearchInputForm';
 import MoviesList from '../../common/moviesList/MoviesList';
-import { findSetPagination, findSetSearchText } from '../../flux/actions/find';
+import { findSetMovies, findSetPagination, findSetSearchText } from '../../flux/actions/find';
 import { requestApi, requestError } from '../../flux/actions/requests';
 import { requestsIds } from '../../flux/reducers/requests';
 import config from '../../config';
+import jsonToModel from '../../utils/jsonToModel';
+import moviesListModel from '../../models/moviesList';
 
 const Find = () => {
   const { state, dispatch } = useHoux();
-  const { searchText, pagination } = state.find;
-  const { responseData, hadError } = state.requests.search;
+  const { searchText, pagination, movies } = state.find;
+  const { hadError } = state.requests.search;
   const [isLoading, setIsLoading] = useState(false);
   const isSearchBoxEmpty = searchText.length <= 0;
-  const didMount = useRef(false);
+  const isMounted = useRef(false);
   let timeout;
 
   useEffect(() => {
-    if (!isSearchBoxEmpty && didMount.current) {
+    if (!isSearchBoxEmpty && isMounted.current) {
       timeout = setTimeout(() => {
         setIsLoading(true);
         const request = {
@@ -29,19 +31,24 @@ const Find = () => {
             page: pagination.current,
           },
         };
-        dispatch(requestApi(requestsIds.search, request, (responsedData) => {
+        dispatch(requestApi(requestsIds.search, request, (rawData) => {
           setIsLoading(false);
-          // eslint-disable-next-line camelcase
-          const { errors, total_pages } = responsedData;
+          const { errors } = rawData;
           if (errors) {
             return dispatch(requestError(requestsIds.search, errors));
           }
-          return dispatch(findSetPagination({ total: total_pages }));
+
+          const { movies: newMovies, totalPages } = jsonToModel(rawData, moviesListModel);
+          dispatch(findSetMovies(newMovies));
+
+          const newPagination = {
+            total: totalPages,
+          };
+          return dispatch(findSetPagination(newPagination));
         }));
       }, config.find.fetchDelayMs);
     }
-
-    didMount.current = true;
+    isMounted.current = true;
   }, [searchText, pagination.current]);
 
   const onPageChange = (pageNumber) => {
@@ -80,7 +87,7 @@ const Find = () => {
         currentPage={pagination.current}
         isLoading={isLoading}
         isError={hadError}
-        movies={responseData.results}
+        movies={movies}
       />
     </>
   );

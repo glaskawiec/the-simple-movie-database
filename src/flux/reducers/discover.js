@@ -1,10 +1,12 @@
 import {
+  DISCOVER_SET_MOVIES,
   DISCOVER_SET_OPTIONS,
   DISCOVER_SET_PAGINATION,
 } from '../actionTypes/discover';
 import cloneObject from '../../utils/cloneObject';
 
 export const initialState = {
+  movies: [],
   pagination: {
     current: 1,
     total: 0,
@@ -28,6 +30,12 @@ const discoverReducer = (state = initialState, action) => {
       const { pagination } = action;
       const newState = cloneObject(state);
       newState.pagination = { ...newState.pagination, ...pagination };
+      return newState;
+    }
+    case DISCOVER_SET_MOVIES: {
+      const { movies } = action;
+      const newState = cloneObject(state);
+      newState.movies = movies;
       return newState;
     }
     default: return state;
