@@ -5,7 +5,7 @@ exports[`FilterForm snapshot 1`] = `
   className="sc-bdVaJa eTdYLS"
 >
   <div
-    className="sc-bxivhb iQLHnd"
+    className="sc-bxivhb dchGGz"
   >
     <label
       className="sc-htpNat kVGrHg"
@@ -50,7 +50,7 @@ exports[`FilterForm snapshot 1`] = `
     </select>
   </div>
   <div
-    className="sc-bxivhb iQLHnd"
+    className="sc-bxivhb dchGGz"
   >
     <label
       className="sc-htpNat kVGrHg"
@@ -95,7 +95,7 @@ exports[`FilterForm snapshot 1`] = `
     </select>
   </div>
   <div
-    className="sc-bxivhb iQLHnd"
+    className="sc-bxivhb dchGGz"
   >
     <label
       className="sc-htpNat kVGrHg"

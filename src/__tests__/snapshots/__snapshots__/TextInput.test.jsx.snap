@@ -2,7 +2,7 @@
 
 exports[`TextInput snapshot 1`] = `
 <div
-  className="sc-htpNat fgrEkI"
+  className="sc-htpNat cNfzEp"
 >
   <label
     className="sc-bdVaJa fxuKrb"
@@ -10,7 +10,7 @@ exports[`TextInput snapshot 1`] = `
     snap
   </label>
   <input
-    className="sc-bwzfXH lbjMp"
+    className="sc-bwzfXH dfHnXN"
     onChange={[MockFunction]}
     placeholder="snap"
     value="snap"
