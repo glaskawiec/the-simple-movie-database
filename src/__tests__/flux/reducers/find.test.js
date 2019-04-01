@@ -1,5 +1,9 @@
 import findReducer, { initialState } from '../../../flux/reducers/find';
-import { FIND_SET_PAGINATION, FIND_SET_SEARCH_TEXT } from '../../../flux/actionTypes/find';
+import {
+  FIND_SET_MOVIES,
+  FIND_SET_PAGINATION,
+  FIND_SET_SEARCH_TEXT,
+} from '../../../flux/actionTypes/find';
 
 describe('Find reducer', () => {
   it('should return the initial state', () => {
@@ -36,6 +40,29 @@ describe('Find reducer', () => {
         ...initialState.pagination,
         current: 7,
       },
+    };
+
+    expect(findReducer(initialState, actionToHandle))
+      .toEqual(expectedState);
+  });
+
+  it('should handle FIND_SET_MOVIES properly', () => {
+    const actionToHandle = {
+      type: FIND_SET_MOVIES,
+      movies: [
+        {
+          title: 'test',
+        },
+      ],
+    };
+
+    const expectedState = {
+      ...initialState,
+      movies: [
+        {
+          title: 'test',
+        },
+      ],
     };
 
     expect(findReducer(initialState, actionToHandle))
