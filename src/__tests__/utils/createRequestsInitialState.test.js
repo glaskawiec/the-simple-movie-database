@@ -27,6 +27,6 @@ describe('createRequestsInitialState func tests', () => {
     const createdState = createRequestsInitialState(requestIds);
 
     // then
-    expect(createdState).to.equal(expectedInitialState);
+    expect(createdState).to.deep.equal(expectedInitialState);
   });
 });
