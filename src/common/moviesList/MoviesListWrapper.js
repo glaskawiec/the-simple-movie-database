@@ -2,10 +2,12 @@ import styled from 'styled-components';
 
 const MoviesListWrapper = styled.div`
   box-sizing: border-box;
+  margin-bottom: 2em;
+  margin-top: 2em;
   display: flex;   
   flex-wrap: wrap;
-  min-height: calc(100vh - 6em - 4em - 4em - 6em);      
-  justify-content: ${props => (props.isLoading || props.isError ? 'center' : 'space-between')};
+  min-height: calc(100vh - 6em - 4em - 4em - 6em - 4em);      
+  justify-content: ${props => (props.isLoading || props.isError || props.noData ? 'center' : 'space-between')};
   align-items: center;
   
   @media (max-width: 768px) {
@@ -13,7 +15,7 @@ const MoviesListWrapper = styled.div`
   }
   
   @media (max-width: 576px) {
-   min-height: calc(100vh - 6em - 4em - 4em - 4em );   
+   min-height: calc(100vh - 6em - 4em - 4em - 4em - 4em);   
   }
 `;
 

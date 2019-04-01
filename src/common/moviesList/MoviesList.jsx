@@ -7,6 +7,7 @@ import Movie from './movie/Movie';
 import ErrorMessage from '../errorMessage/ErrorMessage';
 import config from '../../config';
 import parseDate from '../../utils/parseDate';
+import Heading from '../Heading';
 
 const { imageServiceUrl, mobileImageSizeUrl, desktopImageSizeUrl } = config;
 
@@ -26,8 +27,6 @@ const MoviesList = React.memo(({
   onPageChange,
   isError,
 }) => {
-  let content;
-
   const getPosterSource = (posterPath) => {
     const isMobile = window.innerWidth <= 768;
     if (posterPath) {
@@ -36,24 +35,76 @@ const MoviesList = React.memo(({
     return null;
   };
 
-  // @TODO: Add no results information, refactor component
-
   if (isError) {
-    content = <ErrorMessage />;
-  } else if (isLoading || !movies) {
-    content = <LoadingBars />;
-  } else {
-    content = movies.map(movie => (
-      <Movie
-        key={movie.id}
-        id={movie.id}
-        posterSrc={getPosterSource(movie.poster_path)}
-        description={formatDescription(movie.overview)}
-        metaInformation={parseDate(movie.release_date)}
-        title={movie.title}
-      />
-    ));
+    return (
+      <>
+        <Pagination
+          total={totalPages}
+          onPageChange={onPageChange}
+          current={currentPage}
+        />
+        <MoviesListWrapper isError>
+          <ErrorMessage />
+        </MoviesListWrapper>
+        <Pagination
+          total={totalPages}
+          onPageChange={onPageChange}
+          current={currentPage}
+        />
+      </>
+    );
   }
+
+  if (isLoading) {
+    return (
+      <>
+        <Pagination
+          total={totalPages}
+          onPageChange={onPageChange}
+          current={currentPage}
+        />
+        <MoviesListWrapper
+          noData
+        >
+          <LoadingBars />
+        </MoviesListWrapper>
+        <Pagination
+          total={totalPages}
+          onPageChange={onPageChange}
+          current={currentPage}
+        />
+      </>
+    );
+  }
+
+  if (!movies) {
+    return <MoviesListWrapper />;
+  }
+
+  if (movies.length <= 0) {
+    return (
+      <>
+        <Pagination
+          total={totalPages}
+          onPageChange={onPageChange}
+          current={currentPage}
+        />
+        <MoviesListWrapper
+          noData
+        >
+          <Heading>
+            {'No movies found'}
+          </Heading>
+        </MoviesListWrapper>
+        <Pagination
+          total={totalPages}
+          onPageChange={onPageChange}
+          current={currentPage}
+        />
+      </>
+    );
+  }
+
   return (
     <>
       <Pagination
@@ -66,7 +117,16 @@ const MoviesList = React.memo(({
         isError={isError}
         isLoading={isLoading}
       >
-        {content}
+        {movies.map(movie => (
+          <Movie
+            key={movie.id}
+            id={movie.id}
+            posterSrc={getPosterSource(movie.poster_path)}
+            description={formatDescription(movie.overview)}
+            metaInformation={parseDate(movie.release_date)}
+            title={movie.title}
+          />
+        ))}
       </MoviesListWrapper>
       <Pagination
         total={totalPages}
@@ -87,7 +147,7 @@ MoviesList.propTypes = {
 };
 
 MoviesList.defaultProps = {
-  movies: [],
+  movies: null,
 };
 
 export default MoviesList;
