@@ -6,7 +6,7 @@ import {
 import cloneObject from '../../utils/cloneObject';
 
 export const initialState = {
-  movies: [],
+  movies: null,
   pagination: {
     current: 1,
     total: 0,

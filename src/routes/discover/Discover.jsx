@@ -22,7 +22,7 @@ const Discover = () => {
   const { current, total } = pagination;
 
   useEffect(() => {
-    if (isMounted.current || movies.length <= 0) {
+    if (isMounted.current || !movies) {
       dispatch(requestApi(requestsIds.discover, {
         endpoint: '/discover/movie',
         queryParameters: {
