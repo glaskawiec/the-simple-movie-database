@@ -10,7 +10,6 @@ import {
 } from '../../flux/actions/discover';
 import { requestApi, requestError } from '../../flux/actions/requests';
 import { requestsIds } from '../../flux/reducers/requests';
-import isEmptyObj from '../../utils/isEmptyObj';
 import jsonToModel from '../../utils/jsonToModel';
 import moviesListModel from '../../models/moviesList';
 
@@ -18,12 +17,12 @@ const Discover = () => {
   const { state, dispatch } = useHoux();
   const isMounted = useRef(false);
   const { options, pagination, movies } = state.discover;
-  const { isPending, hadError, responseData } = state.requests.discover;
+  const { isPending, hadError } = state.requests.discover;
   const { year, sort, genres } = options;
   const { current, total } = pagination;
 
   useEffect(() => {
-    if (isMounted.current || isEmptyObj(responseData)) {
+    if (isMounted.current || movies.length <= 0) {
       dispatch(requestApi(requestsIds.discover, {
         endpoint: '/discover/movie',
         queryParameters: {
@@ -39,10 +38,13 @@ const Discover = () => {
           return dispatch(requestError(requestsIds.discover, errors));
         }
 
-        const { movies: newMovies, totalPages } = jsonToModel(rawData, moviesListModel);
-
-        dispatch(discoverSetMovies(newMovies));
-        return dispatch(discoverSetPagination({ total: totalPages }));
+        try {
+          const { movies: newMovies, totalPages } = jsonToModel(rawData, moviesListModel);
+          dispatch(discoverSetMovies(newMovies));
+          return dispatch(discoverSetPagination({ total: totalPages }));
+        } catch (error) {
+          return dispatch(requestError(requestsIds.discover, error));
+        }
       }));
     }
 
