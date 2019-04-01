@@ -38,17 +38,28 @@ I did not put comments in the code because I believe that the clearly written co
 * Data models with typechecking
 * Generic json-to-model parser
 * Airbnb codestyle
+* JavaScript and css linting with eslint and stylelint
 
 ## :pencil: Prerequisites
 *  [Git](https://git-scm.com) installed
 *  [NPM](https://www.npmjs.com/) installed
 
-## :hammer: Installation
-Open you fav terminal and type:
+## :hammer: How to run it locally
+1. Open you fav terminal and type:
 ```
-git clone https://github.com/glaskawiec/theBetterMovieDatabase.git
-cd theBetterMovieDatabase
+git clone https://github.com/glaskawiec/the-simple-movie-database.git
+cd the-simple-movie-database/
 npm install
+```
+
+2. Create `apiKey.js` file at `the-simple-movie-database/src/` and paste your API key.  
+You can read more about API key [here](https://www.themoviedb.org/documentation/api).
+```
+export default 'YOUR_API_KEY';
+```
+
+3. Return to terminal and type:
+```
 npm start
 ```
 ---
