@@ -6,7 +6,12 @@ function normalizeValue(value, schema) {
   if (schema.type === 'array') {
     if (Array.isArray(value)) {
       if (schema.transform) {
-        return normalizeValue(schema.transform(value), schema.model);
+        const transformedValue = schema.transform(value);
+        if (Array.isArray(transformedValue)) {
+          // eslint-disable-next-line no-use-before-define
+          return transformedValue.map(e => jsonToModel(e, schema.model));
+        }
+        return transformedValue;
       }
       // eslint-disable-next-line no-use-before-define
       return value.map(e => jsonToModel(e, schema.model));

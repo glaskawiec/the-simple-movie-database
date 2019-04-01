@@ -31,7 +31,7 @@ const TopBilledCast = ({ data }) => {
         {data.map(actor => (
           <ProfileCard key={actor.id}>
             <ProfileImageWrapper>
-              <LoadableImage src={getProfileImageSource(actor.profile_path)} />
+              <LoadableImage src={getProfileImageSource(actor.profilePath)} />
             </ProfileImageWrapper>
             <Name>{actor.name}</Name>
             <Role>{actor.character}</Role>

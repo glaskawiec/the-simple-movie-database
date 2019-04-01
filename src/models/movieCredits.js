@@ -1,4 +1,3 @@
-
 const movieCreditsModel = {
   cast: {
     key: 'cast',

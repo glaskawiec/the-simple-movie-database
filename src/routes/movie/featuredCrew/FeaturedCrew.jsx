@@ -15,7 +15,7 @@ const FeaturedCrew = ({ data }) => {
       <Heading>Featured Crew</Heading>
       <ProfilesWrapper>
         {data.map(crewMember => (
-          <ProfileNoImage key={crewMember.credit_id}>
+          <ProfileNoImage key={crewMember.id}>
             <Name>{crewMember.name}</Name>
             <p>{crewMember.job}</p>
           </ProfileNoImage>

@@ -16,6 +16,7 @@ const moviesListModel = {
       posterPath: {
         key: 'poster_path',
         type: 'string',
+        default: null,
       },
       releaseDate: {
         key: 'release_date',
@@ -26,6 +27,7 @@ const moviesListModel = {
       title: {
         key: 'title',
         type: 'string',
+        default: '',
       },
       description: {
         key: 'overview',
