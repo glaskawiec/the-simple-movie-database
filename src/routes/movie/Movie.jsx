@@ -27,6 +27,20 @@ const { imageServiceUrl, largeImageSizeUrl, mobileImageSizeUrl } = config;
 const Movie = ({ match }) => {
   const { id } = match.params;
   const { state, dispatch } = useHoux();
+
+  const {
+    isPending: isDetailsRequestPending,
+    hadError: isDetailsRequestHadError,
+  } = state.requests.details;
+
+  const {
+    isPending: isCreditsRequestPending,
+    hadError: isCreditsRequestHadError,
+  } = state.requests.credits;
+
+  const hadError = isCreditsRequestHadError || isDetailsRequestHadError;
+  const isLoading = isDetailsRequestPending || isCreditsRequestPending;
+
   const [detailsData, setDetailsData] = useState(
     {
       title: '',
@@ -78,10 +92,7 @@ const Movie = ({ match }) => {
     return null;
   };
 
-  const { isPending: isDetailsRequestPending, hadError } = state.requests.details;
-  const { isPending: isCreditsRequestPending } = state.requests.credits;
-
-  if (isDetailsRequestPending || isCreditsRequestPending) {
+  if (isLoading) {
     return <LoadingScreen />;
   }
 
