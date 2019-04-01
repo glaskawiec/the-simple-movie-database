@@ -21,6 +21,7 @@ module.exports = {
         "airbnb"
     ],
     rules: {
+        "import/no-extraneous-dependencies": ["error", {"devDependencies": true}],
         "linebreak-style": ["error", "windows"],
         "quotes": ["error", "single"],
         "no-var": "error",

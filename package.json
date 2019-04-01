@@ -3,16 +3,11 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "enzyme": "^3.9.0",
-    "enzyme-adapter-react-16": "^1.11.2",
     "houx": "^1.1.2",
-    "prop-types": "^15.7.2",
     "react": "^16.8.4",
     "react-dom": "^16.8.4",
     "react-router-dom": "^5.0.0",
-    "react-router-prop-types": "^1.0.4",
     "react-scripts": "2.1.8",
-    "react-test-renderer": "^16.8.6",
     "styled-components": "^4.2.0",
     "styled-reset": "^2.0.2"
   },
@@ -40,6 +35,11 @@
     "redux-mock-store": "^1.5.3",
     "redux-thunk": "^2.3.0",
     "stylelint": "^9.10.1",
+    "enzyme": "^3.9.0",
+    "prop-types": "^15.7.2",
+    "react-test-renderer": "^16.8.6",
+    "react-router-prop-types": "^1.0.4",
+    "enzyme-adapter-react-16": "^1.11.2",
     "stylelint-config-recommended": "^2.1.0",
     "stylelint-config-styled-components": "^0.1.1",
     "stylelint-processor-styled-components": "^1.5.2"
