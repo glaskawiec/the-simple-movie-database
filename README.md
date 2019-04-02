@@ -19,7 +19,7 @@ I did not put comments in the code because I believe that the clearly written co
 
 
 ## :rainbow: Demo
-[Click here to see application demo](http://the-simple-movie-database.s3-website-eu-west-1.amazonaws.com/)
+[Click here to see application](http://the-simple-movie-database.s3-website-eu-west-1.amazonaws.com/)
 
 
 ## :fire: Features
@@ -62,6 +62,17 @@ export default 'YOUR_API_KEY';
 ```
 npm start
 ```
+
+## :memo: Available scripts
+| command  | description |
+| ------------- | ------------- |
+| `npm start`  | Runs development server with hot-reloading at `http://localhost:3000`  |
+| `npm run test`  | Jest fires all unit tests from `/__tests__` folder  |
+| `npm run build`  | Makes production optimalized build at `/build` foder  |
+| `npm run lint`  | Eslint searches all .jsx and .js files in `/src` folder for errors  |
+| `npm run lint:fix`  | Eslint automaticly fixes all errors in .jsx and .js files at `/src` folder  |
+| `npm run lint:css`  | Stylelint searches all .js files with CSS-IN-JSS at `/src` folder for errors  |
+| `npm run eject`  | It will copy all the configuration files and the transitive  dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them.  |
 ---
 
 ##### glaskawiec © 2019 - MIT license
