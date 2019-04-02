@@ -4,9 +4,9 @@ import noImageDesktop from '../../resources/images/no-image-desktop.svg';
 import noImageMobile from '../../resources/images/no-image-mobile.svg';
 import LoadableImageStyled from './LoadableImageStyled';
 
-const LoadableImage = React.memo(({ src, onClick }) => {
+const LoadableImage = React.memo(({ src, onClick, isProfileImage }) => {
   const isMobile = window.innerWidth <= 768;
-  const noImageSrc = isMobile ? noImageMobile : noImageDesktop;
+  const noImageSrc = isMobile && !isProfileImage ? noImageMobile : noImageDesktop;
   const [showedImageSrc, setShowedImageSrc] = useState(noImageSrc);
 
   useEffect(() => {
@@ -27,12 +27,14 @@ const LoadableImage = React.memo(({ src, onClick }) => {
 
 LoadableImage.propTypes = {
   src: PropTypes.string,
+  isProfileImage: PropTypes.bool,
   onClick: PropTypes.func,
 };
 
 LoadableImage.defaultProps = {
   src: null,
   onClick: null,
+  isProfileImage: false,
 };
 
 export default LoadableImage;
