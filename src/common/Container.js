@@ -8,6 +8,7 @@ const Container = styled.div`
   
   @media (max-width: 576px) {
     width: 80%;
+    min-height: calc(100vh - 12em);
   }
   
   @media (min-width: 576px) {
