@@ -65,6 +65,7 @@ const Find = () => {
     if (newValue.length > 0) {
       setIsLoading(true);
     } else {
+      dispatch(findSetMovies(null));
       setIsLoading(false);
     }
     dispatch(findSetPagination({ current: 1 }));
