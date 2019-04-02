@@ -17,7 +17,7 @@
     "lint:fix": "eslint --fix --ext .jsx --ext .js src/",
     "lint:css": "stylelint ./src/**/*.js",
     "build": "react-scripts build",
-    "test": "react-scripts test",
+    "test": "react-scripts test --no-watch",
     "eject": "react-scripts eject"
   },
   "browserslist": [
