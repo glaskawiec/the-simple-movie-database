@@ -18,7 +18,6 @@ const reducers = {
 ReactDOM.render(
   <HouxProvider
     reducers={reducers}
-    logDispatchedActions
   >
     <App />
   </HouxProvider>, document.getElementById('root'),
