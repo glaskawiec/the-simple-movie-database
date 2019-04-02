@@ -19,7 +19,7 @@ I did not put comments in the code because I believe that the clearly written co
 
 
 ## :rainbow: Demo
-[Click here to see application demo](http://the-simple-movie-database.s3-website-eu-west-1.amazonaws.com/)
+[Click here to see application](http://the-simple-movie-database.s3-website-eu-west-1.amazonaws.com/)
 
 
 ## :fire: Features
