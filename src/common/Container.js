@@ -4,6 +4,7 @@ const Container = styled.div`
   width: 100%;
   margin-right: auto;
   margin-left: auto;
+  min-height: calc(100vh - 14em);
   
   @media (max-width: 576px) {
     width: 80%;
